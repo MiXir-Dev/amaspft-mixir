@@ -1,0 +1,132 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 125 46% 82%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 80%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 125 46% 82%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 125 46% 82%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-tradingbg-600 text-foreground antialiased font-inter;
+  }
+  
+  /* Custom text selection style */
+  ::selection {
+    @apply bg-mintgreen-300 text-tradingbg-600;
+  }
+  ::-moz-selection {
+    @apply bg-mintgreen-300 text-tradingbg-600;
+  }
+  
+  .glass-blur {
+    @apply bg-black/20 backdrop-blur-lg border-b border-white/5;
+  }
+  
+  .section-padding {
+    @apply py-16 px-4 md:py-24 md:px-6 lg:px-8 xl:px-12;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(193, 225, 194, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(193, 225, 194, 0.7);
+}
+
+/* Custom arrow highlight */
+.active-testimonial-nav {
+  @apply text-mintgreen-300;
+}
+
+.testimonial-container {
+  scroll-snap-type: x mandatory;
+}
+
+.testimonial-item {
+  scroll-snap-align: start;
+}
