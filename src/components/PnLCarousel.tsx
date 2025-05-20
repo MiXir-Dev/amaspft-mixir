@@ -5,11 +5,18 @@ import { Button } from "@/components/ui/button";
 
 // Placeholder for PnL data - we would replace these with actual images
 const pnlData = [
-  { id: 1, month: "January 2025", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" },
-  { id: 2, month: "February 2025", image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" },
-  { id: 3, month: "March 2025", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" },
-  { id: 4, month: "April 2025", image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" },
-  { id: 5, month: "May 2025", image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" }
+  { id: 4, month: "April 2025", image: "/pnl/april-pnl.png", gain: "+$ 2.36K USD" },
+  { id: 3, month: "March 2025", image: "/pnl/march-pnl.png", gain: "+$ 1.12k USD" },
+  { id: 2, month: "February 2025", image: "/pnl/feb-pnl.png", gain: "+$3.27k USD " },
+  { id: 1, month: "January 2025", image: "/pnl/jan-pnl.png", gain: "+$1.88k USD" },
+  { id: 12, month: "December 2024", image: "/pnl/dec-pnl-24.png", gain: "+$2.71K USD" },
+  { id: 11, month: "November 2024", image: "/pnl/nov-pnl-24.png", gain: "+$3.82k USD" },
+  { id: 10, month: "October 2024", image: "/pnl/october-pnl-24.png", gain: "+$2.96k USD" },
+  { id: 8, month: "August 2024", image: "/pnl/aug-pnl-24.png", gain: "+$5.32k USD" },
+  { id: 7, month: "July 2024", image: "/pnl/july-pnl-24.png", gain: "+$5.13k USD" },
+  { id: 6, month: "June 2024", image: "/pnl/june-pnl-24.png", gain: "+$3.83k USD" },
+  // { id: 5, month: "May 202%", image: "/pnl/may-pnl.png", gain: "+6.0%" },
+  // { id: 9, month: "September 2024", image: "", gain: "+4.7%" },
 ];
 
 const PnLCarousel = () => {
@@ -51,10 +58,13 @@ const PnLCarousel = () => {
                   <img
                     src={item.image}
                     alt={`PnL for ${item.month}`}
-                    className="w-full aspect-video object-cover"
+                    className="w-full aspect-video"
                   />
                   <div className="p-3 md:p-4">
-                    <h3 className="text-lg font-medium text-white">{item.month}</h3>
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-lg font-medium text-white">{item.month}</h3>
+                      <span className="text-mintgreen-300 text-sm font-semibold">{item.gain}</span>
+                    </div>
                   </div>
                 </div>
               </div>

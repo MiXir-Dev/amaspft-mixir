@@ -24,7 +24,7 @@ const CTASection = () => {
           </div>
           
           <div className="animate-fade-in mt-8 md:mt-0">
-            <DiscordProof imageUrl="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" />
+            <DiscordProof imageUrl="/discord/members.png" />
           </div>
         </div>
       </div>
