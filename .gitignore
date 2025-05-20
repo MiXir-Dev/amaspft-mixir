@@ -1,0 +1,9 @@
+nodes_modules
+dist
+package-lock.json
+.vscode
+.idea
+.DS_Store
+*.log
+*.env
+bun.lockb
