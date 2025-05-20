@@ -167,16 +167,16 @@ const TestimonialsSection = () => {
                 onClick={() => scroll('left')}
                 variant="outline"
                 size="icon"
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-800 hidden md:flex"
+                className="absolute -left-10 top-1/2 -translate-y-1/2 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-300 text-white transition hidden md:flex shadow-lg"
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              
+
               <Button
                 onClick={() => scroll('right')}
                 variant="outline"
                 size="icon"
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-800 hidden md:flex"
+                className="absolute -right-10 top-1/2 -translate-y-1/2 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-300 text-white transition hidden md:flex shadow-lg"
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>
