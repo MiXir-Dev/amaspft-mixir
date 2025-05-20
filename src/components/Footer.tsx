@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { Instagram, Youtube, X, Download } from "lucide-react";
+import { Instagram, Youtube, X as TwitterIcon, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,19 +19,66 @@ const Footer = () => {
               Join on Whop
             </Button>
           </div>
-          
+
           <div className="flex gap-4">
-            <a href="https://twitter.com/Sten4PF" target="_blank" rel="noopener noreferrer" 
-               className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all">
-              <X size={18} />
+            {/* Twitter */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all"
+              aria-label="Twitter"
+            >
+              <img
+                src="/icons/x.png"
+                alt="X"
+                className="w-[18px] h-[18px]"
+              />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" 
-               className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all">
-              <Instagram size={18} />
+
+            {/* Instagram */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all"
+              aria-label="Instagram"
+            >
+              <img
+                src="/icons/instagram.png"
+                alt="Instagram"
+                className="w-[18px] h-[18px]"
+              />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" 
-               className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all">
-              <Youtube size={18} />
+
+            {/* YouTube */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all"
+              aria-label="YouTube"
+            >
+              <img
+                src="/icons/youtube.png"
+                alt="Youtube"
+                className="w-[18px] h-[18px]"
+              />
+            </a>
+
+            {/* Discord */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all"
+              aria-label="Discord"
+            >
+              <img
+                src="/icons/discord.png"
+                alt="Discord"
+                className="w-[18px] h-[18px]"
+              />
             </a>
           </div>
         </div>
@@ -42,14 +88,22 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="flex flex-col">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 rounded-full bg-mintgreen-300 flex items-center justify-center">
-                <span className="text-tradingbg-600 font-bold text-xs">A</span>
+              <div className="w-6 h-6 rounded-full overflow-hidden bg-mintgreen-300 flex items-center justify-center">
+                <img
+                  src="/logo/logo.png"
+                  alt="Amas Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="text-xl font-bold text-mintgreen-300">AMAS<span className="text-white">TRADING</span></span>
+              <span className="text-xl font-bold text-mintgreen-300">
+                AMAS<span className="text-white">TRADING</span>
+              </span>
             </div>
-            <p className="text-gray-400 mb-6">Stop guessing. Start winning with a proven trading system.</p>
+            <p className="text-gray-400 mb-6">
+              Stop guessing. Start winning with a proven trading system.
+            </p>
           </div>
-          
+
           {/* Quick Links Column */}
           <div className="flex flex-col">
             <h4 className="text-white font-medium mb-6 text-lg">Quick Links</h4>
@@ -58,21 +112,18 @@ const Footer = () => {
               <Link to="/book" className="text-gray-400 hover:text-mintgreen-300 transition-colors w-fit">Book a Call</Link>
             </nav>
           </div>
-          
+
           {/* Legal Column */}
           <div className="flex flex-col">
             <h4 className="text-white font-medium mb-6 text-lg">Legal</h4>
             <nav className="flex flex-col space-y-3">
-              <Link to="/privacy" className="text-gray-400 hover:text-mintgreen-300 transition-colors w-fit">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="text-gray-400 hover:text-mintgreen-300 transition-colors w-fit">
-                Terms of Service
-              </Link>
+              <Link to="/privacy" className="text-gray-400 hover:text-mintgreen-300 transition-colors w-fit">Privacy Policy</Link>
+              <Link to="/terms" className="text-gray-400 hover:text-mintgreen-300 transition-colors w-fit">Terms of Service</Link>
             </nav>
           </div>
         </div>
-        
+
+        {/* Footer Bottom Bar */}
         <div className="border-t border-gray-800 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
             © {currentYear} Amas Trading. All rights reserved.

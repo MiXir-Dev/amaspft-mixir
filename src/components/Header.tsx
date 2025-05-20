@@ -5,12 +5,19 @@ import { Button } from "@/components/ui/button";
 
 const Logo = () => (
   <div className="flex items-center gap-2">
-    <div className="w-8 h-8 rounded-full bg-mintgreen-300 flex items-center justify-center">
-      <span className="text-tradingbg-600 font-bold">A</span>
+    <div className="w-8 h-8 rounded-full overflow-hidden bg-mintgreen-300 flex items-center justify-center">
+      <img
+        src="/logo/logo.png"
+        alt="Amas Logo"
+        className="w-full h-full object-contain"
+      />
     </div>
-    <span className="text-xl font-bold text-mintgreen-300">AMAS<span className="text-white">TRADING</span></span>
+    <span className="text-xl font-bold text-mintgreen-300">
+      AMAS<span className="text-white">TRADING</span>
+    </span>
   </div>
 );
+
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
