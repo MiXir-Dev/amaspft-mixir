@@ -125,6 +125,22 @@ const testimonials = [
     rating: 5,
     category: "results",
     discordImage: "/testimonials/14.png"
+  },
+  {
+    id: 15,
+    name: "Crypto Bells ✔",
+    comment: "Update: Putting my follow up testimonial here @Amas . Tradeify 100k passed by just following the models. Couldn't take too many trades last few weeks, took my time, but reached there thanks to the models taught in the mentorship, the framework, and most importantly for those who were like me, having trouble reading price action, his thought process makes it clear. Have a long way to go still, but let's get there!",
+    rating: 5,
+    category: "all",
+    discordImage: "/testimonials/15.png"
+  },
+  {
+    id: 16,
+    name: "Mo ✔",
+    comment: "I’ve literally tried everything from supply and demand, order flow, volume profile but nothing ever worked for me. I was stuck thinking that just knowing a bunch of concepts was enough to be profitable but with time, I realized that none of it matters if you don’t actually have a real edge. That’s when I found Amas. With him, I didn’t just learn setups or concepts, I learned what a real edge looks like. For the first time, things started to make sense. Now, I know how to scalp 15 handles a day, consistently. It’s not life-changing money yet, but it’s consistent. It’s solid. And it’s just the beginning. This payout means more than just the $2K. It’s proof that I finally understand what I’m doing and it’s all thanks to @Amas",
+    rating: 5,
+    category: "results",
+    discordImage: "/testimonials/16.png"
   }
 ];
 
