@@ -1,7 +1,8 @@
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 
 // Placeholder for PnL data - we would replace these with actual images
 const pnlData = [
@@ -19,6 +20,7 @@ const pnlData = [
   // { id: 9, month: "September 2024", image: "", gain: "+4.7%" },
 ];
 
+
 const PnLCarousel = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -32,7 +34,25 @@ const PnLCarousel = () => {
     });
   };
 
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+  
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const itemWidth = window.innerWidth < 640 ? 280 : window.innerWidth < 768 ? 320 : 360;
+      const index = Math.round(scrollLeft / itemWidth);
+      setActiveIndex(index);
+    };
+  
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+  
   return (
+    
     <section id="results" className="section-padding bg-tradingbg-600">
       <div className="container mx-auto">
         <div className="text-center mb-12">
@@ -94,12 +114,17 @@ const PnLCarousel = () => {
           {pnlData.map((_, i) => (
             <div
               key={i}
-              className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-mintgreen-300' : 'bg-gray-700'} hover:bg-mintgreen-200 transition-colors cursor-pointer`}
+              className={`w-2 h-2 rounded-full ${
+                i === activeIndex ? 'bg-mintgreen-300' : 'bg-gray-700'
+              } hover:bg-mintgreen-200 transition-colors cursor-pointer`}
               onClick={() => {
                 if (!scrollContainerRef.current) return;
-                scrollContainerRef.current.scrollLeft = i * (window.innerWidth < 640 ? 280 : window.innerWidth < 768 ? 320 : 360);
+                scrollContainerRef.current.scrollTo({
+                  left: i * (window.innerWidth < 640 ? 280 : window.innerWidth < 768 ? 320 : 360),
+                  behavior: "smooth",
+                });
               }}
-            />
+            />          
           ))}
         </div>
       </div>
