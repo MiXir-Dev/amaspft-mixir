@@ -22,6 +22,8 @@ const pnlData = [
 
 
 const PnLCarousel = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
@@ -78,7 +80,8 @@ const PnLCarousel = () => {
                   <img
                     src={item.image}
                     alt={`PnL for ${item.month}`}
-                    className="w-full aspect-video"
+                    className="w-full aspect-video cursor-pointer"
+                    onClick={() => setSelectedImage(item.image)}
                   />
                   <div className="p-3 md:p-4">
                     <div className="flex justify-between items-center">
@@ -128,6 +131,19 @@ const PnLCarousel = () => {
           ))}
         </div>
       </div>
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="Popup"
+            className="max-w-full max-h-full rounded-lg shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 };
