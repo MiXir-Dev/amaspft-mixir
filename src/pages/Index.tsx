@@ -55,7 +55,7 @@ const Index = () => {
               <div className="relative">
                 <div className="aspect-square rounded-2xl overflow-hidden border-2 border-mintgreen-300/30">
                   <img 
-                    src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                    src="/logo/hero2.png" 
                     alt="Amas trading" 
                     className="w-full h-full object-cover"
                   />

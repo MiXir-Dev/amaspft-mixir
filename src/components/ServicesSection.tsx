@@ -5,27 +5,27 @@ const services = [
   {
     title: "5-Day Free Trial",
     description: "Try before you commit with full access to all features for 5 days.",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+    image: "/services/free.png"
   },
   {
     title: "Live Trading Sessions",
     description: "Access our Unicorn Model NQ strategy in real-time with professional guidance.",
-    image: "https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+    image: "/services/live.gif"
   },
   {
     title: "Daily Trade Recaps",
     description: "Review the day's setups and results with expert analysis and learning points.",
-    image: "https://images.unsplash.com/photo-1559526324-593bc073d938?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+    image: "/services/recap.png"
   },
   {
     title: "Weekly Setup PDFs",
     description: "Get detailed trade setup documentation to study and implement.",
-    image: "https://images.unsplash.com/photo-1543286386-2e659306cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+    image: "/services/analysis.png"
   },
   {
     title: "Bi-Weekly Backtesting",
     description: "Learn to validate strategies using historical data for better future decisions.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+    image: "/services/backtest.png"
   }
 ];
 
@@ -47,7 +47,7 @@ const ServicesSection = () => {
                 <img 
                   src={service.image} 
                   alt={service.title} 
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-full transition-transform duration-300 hover:scale-102"
                 />
               </div>
               <CardHeader>

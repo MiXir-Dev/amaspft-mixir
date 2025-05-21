@@ -20,7 +20,7 @@ const CTASection = () => {
                 Book Your Free Call
               </Button>
             </Link>
-            <p className="text-gray-500 mt-4 text-sm">No credit card required. No obligation.</p>
+            <p className="text-gray-500 mt-4 text-sm">Limited spots available.</p>
           </div>
           
           <div className="animate-fade-in mt-8 md:mt-0">

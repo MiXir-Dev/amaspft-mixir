@@ -13,7 +13,7 @@ const Logo = () => (
       />
     </div>
     <span className="text-xl font-bold text-mintgreen-300">
-      AMAS<span className="text-white">TRADING</span>
+      AMAS<span className="text-white">PFT</span>
     </span>
   </div>
 );

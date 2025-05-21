@@ -15,15 +15,23 @@ const Footer = () => {
               <Download size={18} />
               <span>Free Trading Strategy PDF</span>
             </Button>
-            <Button className="bg-[#7467F0] hover:bg-[#6355E8] text-white px-6 py-5 h-auto">
-              Join on Whop
-            </Button>
+
+            <a
+              href="https://whop.com/vip-ff-e142/?a=amasteinem"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full md:w-auto"
+            >
+              <Button className="bg-[#7467F0] hover:bg-[#6355E8] text-white px-6 py-5 h-auto w-full md:w-auto">
+                Join on Whop
+              </Button>
+            </a>
           </div>
 
           <div className="flex gap-4">
             {/* Twitter */}
             <a
-              href="#"
+              href="https://x.com/Sten4PF"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all"
@@ -36,39 +44,49 @@ const Footer = () => {
               />
             </a>
 
-            {/* Instagram */}
+            {/* Instagram 
+            
+                if it ever gets depreciated, use custom logo 
+                <img
+                  src="/icons/instagram.png"
+                  alt="Instagram"
+                  className="w-[18px] h-[18px]"
+                />
+            */}
             <a
-              href="#"
+              href="https://www.instagram.com/amaspft"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all"
               aria-label="Instagram"
             >
-              <img
-                src="/icons/instagram.png"
-                alt="Instagram"
-                className="w-[18px] h-[18px]"
-              />
+              <Instagram size={18} />
             </a>
 
-            {/* YouTube */}
+            {/* YouTube
+                if it ever gets depreciated, use custom logo 
+                <img
+                  src="/icons/instagram.png"
+                  alt="Instagram"
+                  className="w-[18px] h-[18px]"
+                />
+            */
+            }
             <a
-              href="#"
+              href="www.youtube.com/@AmasPFT"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all"
               aria-label="YouTube"
             >
-              <img
-                src="/icons/youtube.png"
-                alt="Youtube"
-                className="w-[18px] h-[18px]"
-              />
+              
+              
+              <Youtube size={18} />
             </a>
 
             {/* Discord */}
             <a
-              href="#"
+              href="https://discord.com/invite/gJMwsJ4BGK"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-tradingbg-700 p-2.5 rounded-full text-gray-400 hover:text-mintgreen-300 hover:bg-tradingbg-600 transition-all"
@@ -96,10 +114,10 @@ const Footer = () => {
                 />
               </div>
               <span className="text-xl font-bold text-mintgreen-300">
-                AMAS<span className="text-white">TRADING</span>
+                AMAS<span className="text-white">PFT</span>
               </span>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-gray-400">
               Stop guessing. Start winning with a proven trading system.
             </p>
           </div>
