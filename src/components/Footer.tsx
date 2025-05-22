@@ -136,7 +136,6 @@ const Footer = () => {
             <h4 className="text-white font-medium mb-6 text-lg">Legal</h4>
             <nav className="flex flex-col space-y-3">
               <Link to="/privacy" className="text-gray-400 hover:text-mintgreen-300 transition-colors w-fit">Privacy Policy</Link>
-              <Link to="/terms" className="text-gray-400 hover:text-mintgreen-300 transition-colors w-fit">Terms of Service</Link>
             </nav>
           </div>
         </div>
