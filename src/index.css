@@ -130,3 +130,117 @@
 .testimonial-item {
   scroll-snap-align: start;
 }
+
+/* Loading Screen Animations */
+.logo-container {
+  animation: logoAppear 0.8s ease-out;
+}
+
+@keyframes logoAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.logo-container {
+  animation: logoAppear 0.8s ease-out;
+}
+
+@keyframes logoAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Sword Slash Animations */
+.animate-sword-slash-1 {
+  animation: swordSlash1 2s ease-in-out;
+  transform-origin: center;
+}
+
+.animate-sword-slash-2 {
+  animation: swordSlash2 2s ease-in-out 0.2s both;
+  transform-origin: left center;
+}
+
+.animate-sword-slash-3 {
+  animation: swordSlash3 2s ease-in-out 0.4s both;
+  transform-origin: right center;
+}
+
+.animate-sword-center {
+  animation: swordCenter 2s ease-in-out 0.6s both;
+}
+
+@keyframes swordSlash1 {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) rotate(-45deg);
+  }
+  30% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes swordSlash2 {
+  0% {
+    opacity: 0;
+    transform: translateX(-150px) translateY(-50px) rotate(-90deg);
+  }
+  40% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes swordSlash3 {
+  0% {
+    opacity: 0;
+    transform: translateX(150px) translateY(-50px) rotate(90deg);
+  }
+  40% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes swordCenter {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
