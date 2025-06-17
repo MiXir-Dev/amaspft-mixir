@@ -11,7 +11,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { motion } from "framer-motion";
 import { X } from "lucide-react";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 }
+};
 
 const testimonials = [
   {
@@ -171,14 +177,26 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section id="testimonials" className="section-padding bg-tradingbg-700">
+    <motion.section
+      id="testimonials"
+      className="section-padding bg-tradingbg-700"
+      variants={fadeInUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="container mx-auto">
-        <div className="text-center mb-10">
+        <motion.div
+          className="text-center mb-10"
+          variants={fadeInUp}
+          transition={{ delay: 0.1 }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Success Stories</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Real traders sharing real results and experiences.
           </p>
-          
+
           <div className="inline-flex mt-8 mb-4 overflow-x-auto border border-gray-700 rounded-full p-1 bg-tradingbg-800">
             {categories.map((category) => (
               <button
@@ -194,81 +212,82 @@ const TestimonialsSection = () => {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         <div className="relative">
-          <div 
+          <div
             ref={scrollContainerRef}
             className="flex overflow-x-auto gap-4 md:gap-6 pb-8 testimonial-container scrollbar-none"
           >
-            {filteredTestimonials.map((testimonial) => (
-                <Dialog key={testimonial.id}>
-                  <DialogTrigger asChild>
-                    <div
-                      className="flex-none w-[260px] sm:w-[280px] md:w-[320px] bg-tradingbg-800 p-4 md:p-6 rounded-lg border border-gray-800 transition-all duration-200 cursor-pointer group active:scale-95 hover:border-mintgreen-300/40 focus:outline-none focus:ring-2 focus:ring-mintgreen-300"
-                    >
-                      <StarRating rating={testimonial.rating} className="mb-3 md:mb-4" />
-                      <p className="text-gray-300 mb-3 md:mb-4 text-sm sm:text-base text-justify line-clamp-6">
-                        "{testimonial.comment}"
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <p className="text-mintgreen-300 font-medium">{testimonial.name}</p>
+            {filteredTestimonials.map((testimonial, i) => (
+              <Dialog key={testimonial.id}>
+                <DialogTrigger asChild>
+                  <motion.div
+                    className="flex-none w-[260px] sm:w-[280px] md:w-[320px] bg-tradingbg-800 p-4 md:p-6 rounded-lg border border-gray-800 transition-all duration-200 cursor-pointer group active:scale-95 hover:border-mintgreen-300/40 focus:outline-none focus:ring-2 focus:ring-mintgreen-300"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ duration: 0.4, delay: i * 0.04 }}
+                  >
+                    <StarRating rating={testimonial.rating} className="mb-3 md:mb-4" />
+                    <p className="text-gray-300 mb-3 md:mb-4 text-sm sm:text-base text-justify line-clamp-6">
+                      "{testimonial.comment}"
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-mintgreen-300 font-medium">{testimonial.name}</p>
 
-                        {testimonial.discordImage && (
-                          <div className="bg-tradingbg-700 p-1.5 rounded-md transition-colors group-hover:bg-tradingbg-600">
-                            <div className="w-5 h-5 rounded-md bg-[#5865F2] flex items-center justify-center">
-                              <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
-                                <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09-.01-.02-.04-.03-.07-.03-1.5.26-2.93.71-4.27 1.33-.01 0-.02.01-.03.02-2.72 4.07-3.47 8.03-3.1 11.95 0 .02.01.04.03.05 1.8 1.32 3.53 2.12 5.24 2.65.03.01.06 0 .07-.02.4-.55.76-1.13 1.07-1.74.02-.04 0-.08-.04-.09-.57-.22-1.11-.48-1.64-.78-.04-.02-.04-.08-.01-.11.11-.08.22-.17.33-.25.02-.02.05-.02.07-.01 3.44 1.57 7.15 1.57 10.55 0 .02-.01.05-.01.07.01.11.09.22.17.33.26.04.03.04.09-.01.11-.52.31-1.07.56-1.64.78-.04.01-.05.06-.04.09.32.61.68 1.19 1.07 1.74.03.01.06.02.09.01 1.72-.53 3.45-1.33 5.25-2.65.02-.01.03-.03.03-.05.44-4.53-.73-8.46-3.1-11.95-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12 0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12 0 1.17-.83 2.12-1.89 2.12z" />
-                              </svg>
-                            </div>
+                      {testimonial.discordImage && (
+                        <div className="bg-tradingbg-700 p-1.5 rounded-md transition-colors group-hover:bg-tradingbg-600">
+                          <div className="w-5 h-5 rounded-md bg-[#5865F2] flex items-center justify-center">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="white">
+                              <path d="M19.27 5.33C17.94 4.71...Z" />
+                            </svg>
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
-                  </DialogTrigger>
+                  </motion.div>
+                </DialogTrigger>
 
-                  <DialogContent className="bg-tradingbg-800 border-gray-700">
-                    <DialogHeader>
-                      <DialogClose
-                        className="absolute top-4 right-4 text-gray-400 hover:text-mintgreen-300 transition"
-                        aria-label="Fermer"
-                      >
-                        <X className="w-5 h-5" />
-                      </DialogClose>
-
-                      <DialogTitle className="text-white">Témoignage client</DialogTitle>
-                      <DialogDescription className="text-gray-400">
-                        Capture réelle partagée dans notre Discord.
-                      </DialogDescription>
-                    </DialogHeader>
-
-                    <div className="mt-4 bg-tradingbg-900 p-1 rounded-lg">
-                      <img
-                        src={testimonial.discordImage}
-                        alt={`${testimonial.name}'s testimonial`}
-                        className="w-full rounded-md"
-                        loading="lazy"
-                      />
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              ))}
-
+                <DialogContent className="bg-tradingbg-800 border-gray-700">
+                  <DialogHeader>
+                    <DialogClose
+                      className="absolute top-4 right-4 text-gray-400 hover:text-mintgreen-300 transition"
+                      aria-label="Fermer"
+                    >
+                      <X className="w-5 h-5" />
+                    </DialogClose>
+                    <DialogTitle className="text-white">Témoignage client</DialogTitle>
+                    <DialogDescription className="text-gray-400">
+                      Capture réelle partagée dans notre Discord.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="mt-4 bg-tradingbg-900 p-1 rounded-lg">
+                    <img
+                      src={testimonial.discordImage}
+                      alt={`${testimonial.name}'s testimonial`}
+                      className="w-full rounded-md"
+                      loading="lazy"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
+            ))}
           </div>
 
           {filteredTestimonials.length > 2 && (
             <>
               <Button
-                onClick={() => scroll('left')}
+                onClick={() => scroll("left")}
                 variant="outline"
                 size="icon"
                 className="absolute -left-10 top-1/2 -translate-y-1/2 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-300 text-white transition hidden md:flex shadow-lg"
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-
               <Button
-                onClick={() => scroll('right')}
+                onClick={() => scroll("right")}
                 variant="outline"
                 size="icon"
                 className="absolute -right-10 top-1/2 -translate-y-1/2 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-300 text-white transition hidden md:flex shadow-lg"
@@ -278,17 +297,21 @@ const TestimonialsSection = () => {
             </>
           )}
         </div>
-        
-        <div className="mt-8 md:mt-12 text-center">
+
+        <motion.div
+          className="mt-8 md:mt-12 text-center"
+          variants={fadeInUp}
+          transition={{ delay: 0.2 }}
+        >
           <blockquote className="text-xl sm:text-2xl md:text-3xl text-white font-light italic max-w-3xl mx-auto">
             "This program changed my trading forever."
           </blockquote>
           <div className="mt-3 text-mintgreen-300">
             <span className="inline-block px-3 py-1 bg-mintgreen-300/10 rounded-full text-sm">66+ reviews</span>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
