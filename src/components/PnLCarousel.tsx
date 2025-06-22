@@ -75,7 +75,7 @@ const PnLCarousel = () => {
         <div className="relative">
           <div
             ref={scrollContainerRef}
-            className="flex overflow-x-auto pb-8 gap-4 md:gap-6 scrollbar-none"
+            className="flex overflow-x-auto pb-8 gap-4 md:gap-6 scrollbar-none overflow-y-hidden"
             style={{ scrollSnapType: "x mandatory" }}
           >
             {pnlData.map((item, i) => (
