@@ -3,15 +3,15 @@ export const introExperienceContent = {
     alt: "Amas PFT Logo",
     titlePrimary: "AMAS",
     titleAccent: "PFT",
-    subtitle: "Trader.",
+    subtitle: "Trader",
   },
   form: {
     title: "Quick onboarding",
     subtitle: "A few steps to personalize your experience.",
     inputPlaceholder: "Type your answer",
     emailPlaceholder: "you@example.com",
-    selectPlaceholder: "Select an option",
-    optionsLabel: "Choose one option",
+    optionsLabel: "Choose one or more options",
+    multiHint: "Tap again to deselect",
   },
   navigation: {
     throttleMs: 700,

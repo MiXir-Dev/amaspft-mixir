@@ -1,21 +1,25 @@
 import { motion } from "framer-motion";
-import IntroQuestion from "@/components/intro/IntroQuestion";
 import IntroFinal from "@/components/intro/IntroFinal";
+import IntroSlide from "@/components/intro/IntroSlide";
 import type { IntroQuestion as IntroQuestionType } from "@/consts/introForm.const";
 
 type IntroSlidesProps = {
-  questions: IntroQuestionType[];
+  slides: { id: string; questions: string[] }[];
+  questionMap: Record<string, IntroQuestionType>;
   currentIndex: number;
-  answers: Record<string, string>;
+  answers: Record<string, string | string[]>;
+  invalidQuestionIds: string[];
   errorMessage?: string;
-  onAnswerChange: (id: string, value: string) => void;
+  onAnswerChange: (id: string, value: string | string[]) => void;
   onSubmit: () => void;
 };
 
 const IntroSlides = ({
-  questions,
+  slides,
+  questionMap,
   currentIndex,
   answers,
+  invalidQuestionIds,
   errorMessage,
   onAnswerChange,
   onSubmit,
@@ -26,17 +30,21 @@ const IntroSlides = ({
       animate={{ y: `-${currentIndex * 100}%` }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {questions.map((question, index) => (
-        <div key={question.id} className="h-full">
-          <IntroQuestion
-            question={question}
-            value={answers[question.id] ?? ""}
-            onChange={(value) => onAnswerChange(question.id, value)}
-            errorMessage={errorMessage}
-            isActive={index === currentIndex}
-          />
-        </div>
-      ))}
+      {slides.map((slide, index) => {
+        const slideQuestions = slide.questions.map((id) => questionMap[id]).filter(Boolean);
+        return (
+          <div key={slide.id} className="h-full">
+            <IntroSlide
+              questions={slideQuestions}
+              answers={answers}
+              onAnswerChange={onAnswerChange}
+              errorMessage={errorMessage}
+              isActive={index === currentIndex}
+              invalidQuestionIds={invalidQuestionIds}
+            />
+          </div>
+        );
+      })}
       <div className="h-full">
         <IntroFinal onSubmit={onSubmit} />
       </div>

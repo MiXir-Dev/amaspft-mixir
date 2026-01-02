@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { introExperienceContent } from "@/consts/introExperience.const";
 import { NavigationDirection } from "@/enums/navigation-direction.enum";
 
@@ -7,9 +7,16 @@ type IntroNavigationParams = {
   onDown: () => void;
   onUp: () => void;
   onInvalid: () => void;
+  containerRef: React.RefObject<HTMLDivElement>;
 };
 
-const useIntroNavigation = ({ canGoDown, onDown, onUp, onInvalid }: IntroNavigationParams) => {
+const useIntroNavigation = ({
+  canGoDown,
+  onDown,
+  onUp,
+  onInvalid,
+  containerRef,
+}: IntroNavigationParams) => {
   const lastNavRef = useRef(0);
   const touchStartYRef = useRef<number | null>(null);
 
@@ -33,7 +40,7 @@ const useIntroNavigation = ({ canGoDown, onDown, onUp, onInvalid }: IntroNavigat
     onUp();
   };
 
-  const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+  const handleWheel = (event: WheelEvent) => {
     event.preventDefault();
     if (Math.abs(event.deltaY) < 10) return;
     navigate(event.deltaY > 0 ? NavigationDirection.Down : NavigationDirection.Up);
@@ -64,7 +71,16 @@ const useIntroNavigation = ({ canGoDown, onDown, onUp, onInvalid }: IntroNavigat
     touchStartYRef.current = null;
   };
 
-  return { handleWheel, handleKeyDown, handleTouchStart, handleTouchEnd };
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+    node.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      node.removeEventListener("wheel", handleWheel);
+    };
+  }, [containerRef, handleWheel]);
+
+  return { handleKeyDown, handleTouchStart, handleTouchEnd };
 };
 
 export default useIntroNavigation;
