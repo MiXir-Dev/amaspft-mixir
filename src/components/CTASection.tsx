@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import DiscordProof from "./DiscordProof";
 import { motion } from "framer-motion";
+import { ctaSectionContent, siteButtons } from "@/consts/site.const";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -26,17 +27,17 @@ const CTASection = () => {
             transition={{ delay: 0.1 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              <span className="text-mintgreen-300">Spots are limited.</span> Ready to make 2025 your best trading year yet?
+              <span className="text-mintgreen-300">{ctaSectionContent.headlinePrefix}</span> {ctaSectionContent.headlineSuffix}
             </h2>
             <p className="text-gray-400 mb-10">
-              Join a select community of traders committed to consistent profitability using our proven system.
+              {ctaSectionContent.description}
             </p>
             <Link to="/book">
               <Button className="bg-mintgreen-300 hover:bg-mintgreen-400 text-tradingbg-600 text-lg px-8 py-6 rounded-md font-medium">
-                Book Your Free Call
+                {siteButtons.bookCall}
               </Button>
             </Link>
-            <p className="text-gray-500 mt-4 text-sm">Limited spots available.</p>
+            <p className="text-gray-500 mt-4 text-sm">{ctaSectionContent.note}</p>
           </motion.div>
 
           <motion.div
@@ -44,7 +45,7 @@ const CTASection = () => {
             variants={fadeInUp}
             transition={{ delay: 0.2 }}
           >
-            <DiscordProof imageUrl="/discord/members.png" />
+            <DiscordProof imageUrl={ctaSectionContent.discordImageUrl} />
           </motion.div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { siteButtons } from "@/consts/site.const";
 
 const FloatingCTA = () => {
   // We're keeping the component but not using it in the main Index.tsx
@@ -30,7 +31,7 @@ const FloatingCTA = () => {
     <div className="fixed bottom-6 right-6 z-40 animate-fade-in">
       <Link to="/book">
         <Button className="bg-mintgreen-300 hover:bg-mintgreen-400 text-tradingbg-600 font-medium shadow-lg">
-          Book Your Free Call
+          {siteButtons.bookCall}
         </Button>
       </Link>
     </div>

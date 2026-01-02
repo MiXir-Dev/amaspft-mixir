@@ -1,33 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-
-const services = [
-  {
-    title: "5-Day Free Trial",
-    description: "Try before you commit with full access to all features for 5 days.",
-    image: "/services/free.png"
-  },
-  {
-    title: "Live Trading Sessions",
-    description: "Access our Unicorn Model NQ strategy in real-time with professional guidance.",
-    image: "/services/live.gif"
-  },
-  {
-    title: "Daily Trade Recaps",
-    description: "Review the day's setups and results with expert analysis and learning points.",
-    image: "/services/recap.png"
-  },
-  {
-    title: "Weekly Setup PDFs",
-    description: "Get detailed trade setup documentation to study and implement.",
-    image: "/services/analysis.png"
-  },
-  {
-    title: "Bi-Weekly Backtesting",
-    description: "Learn to validate strategies using historical data for better future decisions.",
-    image: "/services/backtest.png"
-  }
-];
+import { servicesSectionContent } from "@/consts/services.const";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -46,14 +19,14 @@ const ServicesSection = () => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{servicesSectionContent.title}</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Comprehensive trading education and support designed to help you achieve consistent profitability.
+            {servicesSectionContent.description}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+          {servicesSectionContent.items.map((service, index) => (
             <motion.div
               key={index}
               variants={fadeInUp}
@@ -85,13 +58,13 @@ const ServicesSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: services.length * 0.1 }}
+            transition={{ duration: 0.5, delay: servicesSectionContent.items.length * 0.1 }}
           >
             <Card className="bg-tradingbg-600 border border-mintgreen-300/30 hover:border-mintgreen-300/60 transition-colors">
               <div className="h-48 overflow-hidden rounded-t-lg bg-tradingbg-700 flex items-center justify-center">
                 <div className="flex flex-col items-center">
                   <div className="flex items-center mb-2">
-                    {[1, 2, 3, 4, 5].map((star) => (
+                    {servicesSectionContent.rating.stars.map((star) => (
                       <svg
                         key={star}
                         className="w-8 h-8 fill-mintgreen-300 text-mintgreen-300"
@@ -101,15 +74,15 @@ const ServicesSection = () => {
                       </svg>
                     ))}
                   </div>
-                  <div className="text-2xl font-bold text-white mt-2">4.98/5 Rating</div>
+                  <div className="text-2xl font-bold text-white mt-2">{servicesSectionContent.rating.value}</div>
                 </div>
               </div>
               <CardHeader>
-                <CardTitle className="text-xl font-semibold text-white">Client Satisfaction</CardTitle>
+                <CardTitle className="text-xl font-semibold text-white">{servicesSectionContent.rating.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-gray-400">
-                  Join hundreds of satisfied traders who have transformed their trading with our methods.
+                  {servicesSectionContent.rating.description}
                 </CardDescription>
               </CardContent>
             </Card>

@@ -2,18 +2,20 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { navigationLinks } from "@/consts/navigation.const";
+import { siteBrand, siteButtons } from "@/consts/site.const";
 
 const Logo = () => (
   <div className="flex items-center gap-2">
     <div className="w-8 h-8 rounded-full overflow-hidden bg-mintgreen-300 flex items-center justify-center">
       <img
         src="/logo/logo.png"
-        alt="Amas Logo"
+        alt={siteBrand.logoAlt}
         className="w-full h-full object-contain"
       />
     </div>
     <span className="text-xl font-bold text-mintgreen-300">
-      AMAS<span className="text-white">PFT</span>
+      {siteBrand.namePrimary}<span className="text-white">{siteBrand.nameAccent}</span>
     </span>
   </div>
 );
@@ -48,23 +50,22 @@ const Header = () => {
         </Link>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="text-white hover:text-mintgreen-300 transition-colors">
-            Home
-          </Link>
-          <Link to="/book" className="text-white hover:text-mintgreen-300 transition-colors">
-            Book a Call
-          </Link>
+          {navigationLinks.header.map((link) => (
+            <Link key={link.to} to={link.to} className="text-white hover:text-mintgreen-300 transition-colors">
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center space-x-4">
           <Link to="/book" className="hidden md:block">
             <Button variant="default" className="bg-mintgreen-300 text-tradingbg-600 hover:bg-mintgreen-400">
-              Book Your Free Call
+              {siteButtons.bookCall}
             </Button>
           </Link>
           <Link to="/book" className="md:hidden">
             <Button size="sm" variant="default" className="bg-mintgreen-300 text-tradingbg-600 hover:bg-mintgreen-400">
-              Book Call
+              {siteButtons.bookCallShort}
             </Button>
           </Link>
         </div>

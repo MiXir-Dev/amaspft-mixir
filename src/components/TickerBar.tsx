@@ -1,13 +1,6 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-
-const highlights = [
-  "Funded in under 2 weeks",
-  "80% Win Rate Model",
-  "Real PnL posted monthly",
-  "Live trading sessions",
-  "24/7 Discord support"
-];
+import { tickerContent } from "@/consts/site.const";
 
 const TickerBar = () => {
   const tickerRef = useRef<HTMLDivElement>(null);
@@ -40,10 +33,10 @@ const TickerBar = () => {
         ref={tickerRef}
         className="whitespace-nowrap overflow-hidden flex"
       >
-        {[...highlights, ...highlights].map((item, index) => (
+        {[...tickerContent.highlights, ...tickerContent.highlights].map((item, index) => (
           <div key={index} className="flex items-center px-6">
             <span className="text-mintgreen-300 font-medium">{item}</span>
-            <span className="mx-4 text-gray-600">•</span>
+            <span className="mx-4 text-gray-600">{tickerContent.separator}</span>
           </div>
         ))}
       </div>

@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { uiCopy } from "@/consts/ui.const"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -135,11 +136,11 @@ const Carousel = React.forwardRef<
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative", className)}
-          role="region"
-          aria-roledescription="carousel"
-          {...props}
-        >
+        className={cn("relative", className)}
+        role="region"
+        aria-roledescription={uiCopy.carousel.roleDescription}
+        {...props}
+      >
           {children}
         </div>
       </CarouselContext.Provider>
@@ -180,7 +181,7 @@ const CarouselItem = React.forwardRef<
     <div
       ref={ref}
       role="group"
-      aria-roledescription="slide"
+      aria-roledescription={uiCopy.carousel.slideRoleDescription}
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
@@ -215,7 +216,7 @@ const CarouselPrevious = React.forwardRef<
       {...props}
     >
       <ArrowLeft className="h-4 w-4" />
-      <span className="sr-only">Previous slide</span>
+      <span className="sr-only">{uiCopy.carousel.previousSlide}</span>
     </Button>
   )
 })
@@ -244,7 +245,7 @@ const CarouselNext = React.forwardRef<
       {...props}
     >
       <ArrowRight className="h-4 w-4" />
-      <span className="sr-only">Next slide</span>
+      <span className="sr-only">{uiCopy.carousel.nextSlide}</span>
     </Button>
   )
 })
