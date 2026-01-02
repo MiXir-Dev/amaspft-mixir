@@ -15,6 +15,7 @@ import {
   testimonialImageAlt,
   testimonialsSectionContent,
 } from "@/consts/testimonials.const";
+import { MotionVariant } from "@/enums/motion-variant.enum";
 
 type TestimonialItem = {
   id: number;
@@ -41,8 +42,8 @@ const TestimonialCard = ({ testimonial, index, fadeInUp }: TestimonialCardProps)
         <motion.div
           className="flex-none w-[260px] sm:w-[280px] md:w-[320px] bg-tradingbg-800 p-4 md:p-6 rounded-lg border border-gray-800 transition-all duration-200 cursor-pointer group active:scale-95 hover:border-mintgreen-300/40 focus:outline-none focus:ring-2 focus:ring-mintgreen-300"
           variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
+          initial={MotionVariant.Hidden}
+          whileInView={MotionVariant.Visible}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.4, delay: index * 0.04 }}
         >

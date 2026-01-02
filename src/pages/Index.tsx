@@ -10,10 +10,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { heroContent, siteButtons } from "@/consts/site.const";
+import { MotionVariant } from "@/enums/motion-variant.enum";
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 }
+  [MotionVariant.Hidden]: { opacity: 0, y: 40 },
+  [MotionVariant.Visible]: { opacity: 1, y: 0 }
 };
 
 const Index = () => {
@@ -25,8 +26,8 @@ const Index = () => {
       <motion.section
         className="pt-24 pb-16 md:pt-36 md:pb-24 px-4"
         variants={fadeInUp}
-        initial="hidden"
-        whileInView="visible"
+        initial={MotionVariant.Hidden}
+        whileInView={MotionVariant.Visible}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >

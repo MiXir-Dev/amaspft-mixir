@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { RefObject } from "react";
 import { Button } from "@/components/ui/button";
 import TestimonialCard from "@/components/testimonials/TestimonialCard";
+import { ScrollDirection } from "@/enums/scroll-direction.enum";
 
 type TestimonialItem = {
   id: number;
@@ -19,7 +20,7 @@ type TestimonialsCarouselProps = {
   };
   testimonials: TestimonialItem[];
   scrollContainerRef: RefObject<HTMLDivElement>;
-  onScroll: (direction: "left" | "right") => void;
+  onScroll: (direction: ScrollDirection) => void;
 };
 
 const TestimonialsCarousel = ({
@@ -47,7 +48,7 @@ const TestimonialsCarousel = ({
       {testimonials.length > 2 && (
         <>
           <Button
-            onClick={() => onScroll("left")}
+            onClick={() => onScroll(ScrollDirection.Left)}
             variant="outline"
             size="icon"
             className="absolute -left-10 top-1/2 -translate-y-1/2 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-300 text-white transition hidden md:flex shadow-lg"
@@ -55,7 +56,7 @@ const TestimonialsCarousel = ({
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <Button
-            onClick={() => onScroll("right")}
+            onClick={() => onScroll(ScrollDirection.Right)}
             variant="outline"
             size="icon"
             className="absolute -right-10 top-1/2 -translate-y-1/2 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-300 text-white transition hidden md:flex shadow-lg"

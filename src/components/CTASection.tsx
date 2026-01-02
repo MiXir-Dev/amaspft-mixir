@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import DiscordProof from "./DiscordProof";
 import { motion } from "framer-motion";
 import { ctaSectionContent, siteButtons } from "@/consts/site.const";
+import { MotionVariant } from "@/enums/motion-variant.enum";
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 }
+  [MotionVariant.Hidden]: { opacity: 0, y: 30 },
+  [MotionVariant.Visible]: { opacity: 1, y: 0 }
 };
 
 const CTASection = () => {
@@ -14,8 +15,8 @@ const CTASection = () => {
     <motion.section
       className="bg-tradingbg-800 py-16 md:py-24"
       variants={fadeInUp}
-      initial="hidden"
-      whileInView="visible"
+      initial={MotionVariant.Hidden}
+      whileInView={MotionVariant.Visible}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
     >

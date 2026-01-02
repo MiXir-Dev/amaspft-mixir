@@ -3,6 +3,8 @@ import { pnlSectionContent } from "@/consts/stats.const";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { RefObject } from "react";
+import { MotionVariant } from "@/enums/motion-variant.enum";
+import { ScrollDirection } from "@/enums/scroll-direction.enum";
 
 type PnLItem = {
   id: number;
@@ -18,7 +20,7 @@ type PnLScrollerProps = {
     visible: { opacity: number; y: number };
   };
   scrollContainerRef: RefObject<HTMLDivElement>;
-  onScroll: (direction: "left" | "right") => void;
+  onScroll: (direction: ScrollDirection) => void;
   onSelectImage: (image: string) => void;
 };
 
@@ -42,8 +44,8 @@ const PnLScroller = ({
             className="flex flex-col flex-none w-[280px] sm:w-[320px] md:w-[360px]"
             style={{ scrollSnapAlign: "start" }}
             variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
+            initial={MotionVariant.Hidden}
+            whileInView={MotionVariant.Visible}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
           >
@@ -66,7 +68,7 @@ const PnLScroller = ({
       </div>
 
       <Button
-        onClick={() => onScroll("left")}
+        onClick={() => onScroll(ScrollDirection.Left)}
         variant="outline"
         size="icon"
         className="absolute -left-10 top-1/2 -translate-y-1/2 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-300 text-white transition hidden md:flex shadow-lg"
@@ -75,7 +77,7 @@ const PnLScroller = ({
       </Button>
 
       <Button
-        onClick={() => onScroll("right")}
+        onClick={() => onScroll(ScrollDirection.Right)}
         variant="outline"
         size="icon"
         className="absolute -right-10 top-1/2 -translate-y-1/2 bg-tradingbg-700 border-gray-800 hover:bg-mintgreen-300 text-white transition hidden md:flex shadow-lg"

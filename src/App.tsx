@@ -9,15 +9,13 @@ import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import { useState } from "react";
 import LoadingScreen  from "./components/LoadingScreen.tsx";
+import IntroExperience from "@/components/intro/IntroExperience";
+import { AppFlow } from "@/enums/app-flow.enum";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
+  const [flow, setFlow] = useState<AppFlow>(AppFlow.Loading);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -25,9 +23,15 @@ const App = () => {
         <Toaster />
         <Sonner />
 
-        {isLoading ? (
-          <LoadingScreen onComplete={handleLoadingComplete} />
-        ) : (
+        {flow === AppFlow.Loading && (
+          <LoadingScreen onComplete={() => setFlow(AppFlow.Onboarding)} />
+        )}
+
+        {flow === AppFlow.Onboarding && (
+          <IntroExperience onComplete={() => setFlow(AppFlow.Ready)} />
+        )}
+
+        {flow === AppFlow.Ready && (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />

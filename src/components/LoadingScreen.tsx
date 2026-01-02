@@ -1,34 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { introExperienceContent } from "@/consts/introExperience.const";
 
 const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
-  const [isAnimating, setIsAnimating] = useState(true);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const timer = setTimeout(() => {
-      setIsAnimating(false);
+      setVisible(false);
       setTimeout(onComplete, 500);
-    }, 3000);
-    return () => clearTimeout(timer);
+    }, 3200);
+
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [onComplete]);
 
   return (
-    <div
-      className={`fixed inset-0 bg-black z-[9999] flex items-center justify-center transition-opacity duration-500 ${
-        isAnimating ? 'opacity-100' : 'opacity-0'
-      }`}
+    <motion.div
+      className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
+      initial={{ opacity: 1 }}
+      animate={{ opacity: visible ? 1 : 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="relative">
+      <div className="relative flex flex-col items-center">
         {/* Glow */}
-        <div className="absolute inset-0 bg-mintgreen-300/20 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute inset-0 bg-mintgreen-300/20 rounded-full blur-2xl" />
 
-        {/* Logo */}
-        <div className="logo-container w-[200px] h-[200px] md:w-[260px] md:h-[260px]">
+        {/* SVG Logo */}
+        <div className="relative w-[200px] h-[200px] md:w-[260px] md:h-[260px]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 160 160"
             className="w-full h-full"
           >
-            {/* P with integrated hole */}
+            {/* P */}
             <g className="animate-sword-slash-1">
               <path
                 fill="#c1e1c2"
@@ -48,8 +58,28 @@ const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
             </g>
           </svg>
         </div>
+
+        {/* Logo Lockup */}
+        <motion.div
+          className="mt-6 text-center"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <div className="text-2xl font-semibold tracking-widest">
+            <span className="text-white">
+              {introExperienceContent.logo.titlePrimary}
+            </span>
+            <span className="text-mintgreen-300">
+              {introExperienceContent.logo.titleAccent}
+            </span>
+          </div>
+          <div className="text-sm text-gray-400 mt-1">
+            {introExperienceContent.logo.subtitle}
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

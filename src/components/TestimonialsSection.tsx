@@ -5,10 +5,12 @@ import { testimonialsData } from "@/consts/testimonials-data.const";
 import TestimonialsHeader from "@/components/testimonials/TestimonialsHeader";
 import TestimonialsCarousel from "@/components/testimonials/TestimonialsCarousel";
 import TestimonialsFooter from "@/components/testimonials/TestimonialsFooter";
+import { MotionVariant } from "@/enums/motion-variant.enum";
+import { ScrollDirection } from "@/enums/scroll-direction.enum";
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 }
+  [MotionVariant.Hidden]: { opacity: 0, y: 30 },
+  [MotionVariant.Visible]: { opacity: 1, y: 0 }
 };
 
 const TestimonialsSection = () => {
@@ -20,10 +22,10 @@ const TestimonialsSection = () => {
       ? testimonialsData 
       : testimonialsData.filter(t => t.category === activeCategory);
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: ScrollDirection) => {
     if (!scrollContainerRef.current) return;
     
-    const scrollAmount = direction === 'left' ? -300 : 300;
+    const scrollAmount = direction === ScrollDirection.Left ? -300 : 300;
     scrollContainerRef.current.scrollBy({
       left: scrollAmount,
       behavior: 'smooth'
@@ -35,8 +37,8 @@ const TestimonialsSection = () => {
       id="testimonials"
       className="section-padding bg-tradingbg-700"
       variants={fadeInUp}
-      initial="hidden"
-      whileInView="visible"
+      initial={MotionVariant.Hidden}
+      whileInView={MotionVariant.Visible}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
     >

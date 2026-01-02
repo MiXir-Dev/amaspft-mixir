@@ -5,10 +5,12 @@ import PnLHeader from "@/components/pnl/PnLHeader";
 import PnLScroller from "@/components/pnl/PnLScroller";
 import PnLDots from "@/components/pnl/PnLDots";
 import PnLModal from "@/components/pnl/PnLModal";
+import { MotionVariant } from "@/enums/motion-variant.enum";
+import { ScrollDirection } from "@/enums/scroll-direction.enum";
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
+  [MotionVariant.Hidden]: { opacity: 0, y: 40 },
+  [MotionVariant.Visible]: { opacity: 1, y: 0 },
 };
 
 const PnLCarousel = () => {
@@ -16,9 +18,9 @@ const PnLCarousel = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const scroll = (direction: "left" | "right") => {
+  const scroll = (direction: ScrollDirection) => {
     if (!scrollContainerRef.current) return;
-    const scrollAmount = direction === "left" ? -400 : 400;
+    const scrollAmount = direction === ScrollDirection.Left ? -400 : 400;
     scrollContainerRef.current.scrollBy({
       left: scrollAmount,
       behavior: "smooth",
@@ -45,8 +47,8 @@ const PnLCarousel = () => {
       id="results"
       className="section-padding bg-tradingbg-600"
       variants={fadeInUp}
-      initial="hidden"
-      whileInView="visible"
+      initial={MotionVariant.Hidden}
+      whileInView={MotionVariant.Visible}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6 }}
     >
