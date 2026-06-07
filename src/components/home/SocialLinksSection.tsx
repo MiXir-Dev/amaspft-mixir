@@ -17,7 +17,7 @@ export function SocialLinksSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] h-11 w-11 sm:w-auto sm:px-5 sm:py-2.5 justify-center text-sm text-muted-foreground hover:text-mint hover:border-mint/40 transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] h-11 w-11 sm:w-auto sm:px-5 sm:py-2.5 justify-center text-sm text-muted-foreground hover:text-mint hover:border-mint/40 transition-colors"
               >
                 <Icon className="h-4 w-4" />
                 <span className="hidden sm:inline">{s.label}</span>

@@ -7,7 +7,7 @@ export function PayoutRail() {
   return (
     <Section
       id="payouts"
-      eyebrow="PAYOUT PROOF"
+      eyebrow="PAYOUT PROOF ($70,000+)"
       containerClassName="max-w-none"
     >
       <MarqueeRail
@@ -19,7 +19,7 @@ export function PayoutRail() {
             imageSrc={p.imageSrc}
             alt={p.alt}
             bottomLeft={p.amount}
-            topRight={p.live ? "Live" : "Payout"}
+            topRight={p.live ? "Live" : "Prop Firm"}
             aspect="landscape"
           />
         )}

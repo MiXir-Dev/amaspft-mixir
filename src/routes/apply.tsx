@@ -101,7 +101,7 @@ function ApplyPage() {
     <PageShell>
       <section className="relative pt-28 sm:pt-36 md:pt-44 pb-20 sm:pb-24">
         <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[500px] w-[700px] rounded-full bg-mint/[0.05] blur-[120px]" />
-        <div className="relative mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-12">
             <span className="font-medium uppercase tracking-[0.22em] text-mint text-xs sm:text-sm">
               APPLICATION
@@ -120,7 +120,7 @@ function ApplyPage() {
               noValidate
             >
               <div>
-                <label className={labelCls}>Nom</label>
+                <label className={labelCls}>Name</label>
                 <input {...register("name")} className={inputCls} autoComplete="name" />
                 {errors.name && (
                   <p className="mt-1 text-xs text-destructive">{errors.name.message}</p>
@@ -140,7 +140,7 @@ function ApplyPage() {
                   )}
                 </div>
                 <div>
-                  <label className={labelCls}>X handle</label>
+                  <label className={labelCls}>𝕏 handle (twitter)</label>
                   <input
                     {...register("xHandle")}
                     placeholder="@username"
@@ -227,26 +227,51 @@ function ExperienceSelector({
   return (
     <div
       role="radiogroup"
-      className="grid grid-cols-3 gap-2 sm:gap-3 p-1 rounded-2xl border border-white/10 bg-surface-2/40"
+      aria-label="Experience level"
+      className="flex flex-wrap items-center justify-between sm:gap-5"
     >
       {EXPERIENCE_LEVELS.map((opt) => {
         const selected = value === opt.value;
+
         return (
-          <button
+          <label
             key={opt.value}
-            type="button"
-            role="radio"
-            aria-checked={selected}
-            onClick={() => onChange(opt.value)}
             className={cn(
-              "rounded-xl px-3 py-2.5 text-xs sm:text-sm font-medium transition border",
+              "group flex cursor-pointer items-center gap-2 rounded-full py-1 text-sm font-medium transition-colors",
               selected
-                ? "bg-mint text-primary-foreground border-mint shadow-[0_8px_30px_-12px_color-mix(in_oklab,var(--mint)_60%,transparent)]"
-                : "bg-transparent text-muted-foreground border-white/10 hover:text-foreground hover:border-white/20",
+                ? "text-foreground"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
-            {opt.label}
-          </button>
+            <input
+              type="radio"
+              name="experience"
+              value={opt.value}
+              checked={selected}
+              onChange={() => onChange(opt.value)}
+              className="sr-only"
+            />
+
+            <span
+              className={cn(
+                "flex h-5 w-5 items-center justify-center rounded-full border transition-all duration-200",
+                selected
+                  ? "border-mint shadow-[0_0_18px_rgba(193,225,194,0.55)]"
+                  : "border-white/20 group-hover:border-mint/50",
+              )}
+            >
+              <span
+                className={cn(
+                  "h-2.5 w-2.5 rounded-full transition-all duration-200",
+                  selected
+                    ? "scale-100 bg-mint shadow-[0_0_14px_rgba(193,225,194,0.9)]"
+                    : "scale-0",
+                )}
+              />
+            </span>
+
+            <span>{opt.label}</span>
+          </label>
         );
       })}
     </div>
