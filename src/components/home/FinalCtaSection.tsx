@@ -20,7 +20,7 @@ export function FinalCtaSection() {
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-surface-1 aspect-[16/10] sm:aspect-[1024/663] mint-glow">
               <img
                 src={lifetimeImg}
-                alt={`${LIFETIME_PAYOUTS} lifetime payouts proof`}
+                alt={`AmasPFT lifetime payout proof screenshot showing more than ${LIFETIME_PAYOUTS} in withdrawals`}
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-contain"
               />
@@ -28,7 +28,11 @@ export function FinalCtaSection() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <CTAButton to="/apply" className="w-full sm:w-auto">
+            <CTAButton
+              to="/apply"
+              className="w-full sm:w-auto"
+              aria-label="Apply to Work With AmasPFT"
+            >
               Apply Now
             </CTAButton>
           </div>

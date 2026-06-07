@@ -1,6 +1,6 @@
 import { CTAButton } from "@/components/ui/CTAButton";
 import { VideoFeature } from "./VideoFeature";
-import { PRIMARY_CTA } from "@/constants/app.const";
+import { PRIMARY_CTA, SITE_NAME, TRADER_NAME } from "@/constants/app.const";
 
 export function HeroSection() {
   return (
@@ -11,12 +11,13 @@ export function HeroSection() {
       <div className="relative mx-auto flex max-w-6xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="flex max-w-4xl flex-col items-center text-center">
           <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-            Discipline{" "}
-            <span className="text-mint">Pays.</span>
+            <span className="block text-mint">{SITE_NAME}</span>
+            <span className="block text-foreground">Futures Trader</span>
           </h1>
 
           <p className="mt-5 max-w-xl text-balance text-sm text-muted-foreground sm:mt-6 sm:text-base md:text-lg">
-            Futures trading, live execution, payouts, and a community built around discipline.
+            Official website of {TRADER_NAME}, sharing futures trading payouts,
+            monthly results, community testimonials, and application access.
           </p>
         </div>
 
@@ -24,7 +25,11 @@ export function HeroSection() {
           <VideoFeature />
         </div>
 
-        <CTAButton to="/apply" className="w-auto">
+        <CTAButton
+          to="/apply"
+          className="w-auto"
+          aria-label="Apply to Work With AmasPFT"
+        >
           {PRIMARY_CTA}
         </CTAButton>
       </div>

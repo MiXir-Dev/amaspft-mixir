@@ -11,6 +11,7 @@ type Props = {
   variant?: Variant;
   className?: string;
   onClick?: () => void;
+  "aria-label"?: string;
 };
 
 const base =
@@ -23,24 +24,37 @@ const styles: Record<Variant, string> = {
     "border border-white/10 bg-white/[0.02] text-foreground hover:bg-white/[0.06] hover:border-white/20",
 };
 
-export function CTAButton({ children, to, href, variant = "primary", className, onClick }: Props) {
+export function CTAButton({
+  children,
+  to,
+  href,
+  variant = "primary",
+  className,
+  onClick,
+  "aria-label": ariaLabel,
+}: Props) {
   const cls = cn(base, styles[variant], className);
   if (to) {
     return (
-      <Link to={to} className={cls} onClick={onClick}>
+      <Link to={to} className={cls} onClick={onClick} aria-label={ariaLabel}>
         {children}
       </Link>
     );
   }
   if (href) {
     return (
-      <a href={href} className={cls} onClick={onClick}>
+      <a href={href} className={cls} onClick={onClick} aria-label={ariaLabel}>
         {children}
       </a>
     );
   }
   return (
-    <button type="button" className={cls} onClick={onClick}>
+    <button
+      type="button"
+      className={cls}
+      onClick={onClick}
+      aria-label={ariaLabel}
+    >
       {children}
     </button>
   );

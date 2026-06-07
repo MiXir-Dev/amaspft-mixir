@@ -29,11 +29,11 @@ export function VideoFeature() {
             type="button"
             onClick={() => setActive(true)}
             className="group absolute inset-0 h-full w-full cursor-pointer overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-mint focus-visible:ring-offset-4 focus-visible:ring-offset-background"
-            aria-label="Play AmasPFT video"
+            aria-label="Play AmasPFT futures trading video"
           >
             <img
               src={thumbnailImg}
-              alt="AmasPFT trading video thumbnail"
+              alt="AmasPFT video thumbnail introducing the futures trading community and payout proof"
               className="absolute inset-0 h-full w-full object-cover opacity-85 transition duration-500 group-hover:scale-[1.025] group-hover:opacity-100"
             />
 

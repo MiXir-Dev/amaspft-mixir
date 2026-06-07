@@ -8,23 +8,59 @@ import { PageShell } from "@/components/layout/PageShell";
 import { CTAButton } from "@/components/ui/CTAButton";
 import igProfileImg from "@/assets/logo/ig.jpg";
 import { COUNTRIES } from "@/constants/countries.const";
-import { SOCIAL_LINKS, TRADER_NAME } from "@/constants/app.const";
+import {
+  SHARE_IMAGE_PATH,
+  SITE_NAME,
+  SITE_URL,
+  SOCIAL_LINKS,
+  TRADER_NAME,
+  absoluteUrl,
+} from "@/constants/app.const";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/apply")({
   head: () => ({
     meta: [
-      { title: "Apply — AmasPFT" },
+      { title: "Apply to Work With AmasPFT" },
       {
         name: "description",
-        content: "Apply to work with Amas. For serious traders only.",
+        content:
+          "Official application page for AmasPFT. Apply to work with AmasPFT’s futures trading community and mentorship experience.",
       },
-      { property: "og:title", content: "Apply — AmasPFT" },
+      { property: "og:title", content: "Apply to Work With AmasPFT" },
       {
         property: "og:description",
-        content: "Apply to work with Amas. For serious traders only.",
+        content:
+          "Official AmasPFT application page for traders interested in the community and mentorship experience.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:url", content: absoluteUrl("/apply") },
+      { property: "og:image", content: absoluteUrl(SHARE_IMAGE_PATH) },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Apply to Work With AmasPFT" },
+      {
+        name: "twitter:description",
+        content: "Official application page for AmasPFT.",
+      },
+      { name: "twitter:image", content: absoluteUrl(SHARE_IMAGE_PATH) },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Apply to Work With AmasPFT",
+          url: absoluteUrl("/apply"),
+          description:
+            "Official application page for AmasPFT. Apply to work with AmasPFT’s futures trading community and mentorship experience.",
+          isPartOf: {
+            "@type": "WebSite",
+            name: SITE_NAME,
+            url: SITE_URL,
+          },
+        },
       },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/apply") }],
   }),
   component: ApplyPage,
 });
@@ -86,9 +122,9 @@ const SUCCESS_CONTACTS = {
 } as const;
 
 function ApplyPage() {
-  const [submitted, setSubmitted] = useState<{ contact: "Instagram" | "X" } | null>(
-    null,
-  );
+  const [submitted, setSubmitted] = useState<{
+    contact: "Instagram" | "X";
+  } | null>(null);
 
   const {
     register,
@@ -108,7 +144,6 @@ function ApplyPage() {
   });
 
   const onSubmit = async (data: FormData) => {
-    // eslint-disable-next-line no-console
     console.log("Application submitted", data);
 
     await new Promise((r) => setTimeout(r, 500));
@@ -143,7 +178,7 @@ function ApplyPage() {
             </span>
 
             <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-balance">
-              Apply To Work With Amas
+              Apply To Work With AmasPFT
             </h1>
           </div>
 
@@ -154,7 +189,11 @@ function ApplyPage() {
           >
             <div>
               <label className={labelCls}>Name</label>
-              <input {...register("name")} className={inputCls} autoComplete="name" />
+              <input
+                {...register("name")}
+                className={inputCls}
+                autoComplete="name"
+              />
 
               {errors.name && (
                 <p className="mt-1 text-xs text-destructive">
@@ -220,7 +259,10 @@ function ApplyPage() {
                   control={control}
                   name="country"
                   render={({ field }) => (
-                    <CountrySelect value={field.value} onChange={field.onChange} />
+                    <CountrySelect
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   )}
                 />
 
@@ -256,14 +298,15 @@ function ApplyPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
+                aria-label="Apply to Work With AmasPFT"
                 className="w-full inline-flex items-center justify-center rounded-full bg-mint px-6 py-3.5 text-sm font-medium text-primary-foreground hover:bg-mint-hover transition disabled:opacity-60"
               >
                 {isSubmitting ? "Submitting…" : "Submit Application"}
               </button>
 
               <p className="mt-4 text-[11px] text-muted-foreground/80 text-center leading-relaxed">
-                By submitting, you understand that trading involves risk and results are
-                not guaranteed.
+                By submitting, you understand that trading involves risk and
+                results are not guaranteed.
               </p>
             </div>
           </form>
@@ -431,7 +474,11 @@ function SuccessState({ contact }: { contact: "Instagram" | "X" }) {
         <div className="relative">
           <img
             src={igProfileImg}
-            alt={`${TRADER_NAME} profile`}
+            alt={
+              details.label === "Instagram"
+                ? "AmasPFT Instagram profile photo"
+                : "AmasPFT profile photo"
+            }
             className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
           />
         </div>

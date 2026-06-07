@@ -1,6 +1,14 @@
 import { SOCIAL_LINKS } from "@/constants/app.const";
 
 export function SocialLinksSection() {
+  const getAriaLabel = (label: string) => {
+    if (label === "Discord") {
+      return "Join AmasPFT on Discord";
+    }
+
+    return `Open AmasPFT on ${label}`;
+  };
+
   return (
     <section className="py-12 sm:py-16 border-t border-white/[0.06]">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
@@ -16,7 +24,7 @@ export function SocialLinksSection() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={s.label}
+                aria-label={getAriaLabel(s.label)}
                 className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] h-11 w-11 sm:w-auto sm:px-5 sm:py-2.5 justify-center text-sm text-muted-foreground hover:text-mint hover:border-mint/40 transition-colors"
               >
                 <Icon className="h-4 w-4" />

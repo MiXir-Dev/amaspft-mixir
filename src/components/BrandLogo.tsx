@@ -8,7 +8,11 @@ type BrandLogoProps = {
   textClassName?: string;
 };
 
-export function BrandLogo({ className, imageClassName, textClassName }: BrandLogoProps) {
+export function BrandLogo({
+  className,
+  imageClassName,
+  textClassName,
+}: BrandLogoProps) {
   return (
     <Link
       to="/"
@@ -19,8 +23,12 @@ export function BrandLogo({ className, imageClassName, textClassName }: BrandLog
     >
       <img
         src={logoSrc}
-        alt="AmasPFT logo"
-        className={cn("h-9 w-9 rounded-full border border-white/10 bg-black object-contain p-1", imageClassName)}
+        alt=""
+        aria-hidden="true"
+        className={cn(
+          "h-9 w-9 rounded-full border border-white/10 bg-black object-contain p-1",
+          imageClassName,
+        )}
       />
       <span className={cn("text-base sm:text-lg", textClassName)}>
         <span>Amas</span>

@@ -38,7 +38,12 @@ export function Header() {
           ))}
         </nav>
 
-        <CTAButton to="/apply" variant="primary" className="px-4 py-2 text-xs sm:text-sm">
+        <CTAButton
+          to="/apply"
+          variant="primary"
+          className="px-4 py-2 text-xs sm:text-sm"
+          aria-label="Apply to Work With AmasPFT"
+        >
           Apply
         </CTAButton>
       </div>
