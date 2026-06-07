@@ -16,7 +16,7 @@ export function VideoFeature({ videoId }: Props) {
           <button
             type="button"
             onClick={() => videoId && setActive(true)}
-            className="group absolute inset-0 w-full h-full"
+            className="group absolute inset-0 h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-mint focus-visible:ring-offset-4 focus-visible:ring-offset-background"
             aria-label="Play video"
           >
             <img
@@ -26,9 +26,20 @@ export function VideoFeature({ videoId }: Props) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-              <span className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-mint text-primary-foreground shadow-[0_0_60px_-10px_color-mix(in_oklab,var(--mint)_80%,transparent)] transition-transform duration-300 group-hover:scale-110">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7 translate-x-0.5">
-                  <path d="M8 5v14l11-7z" />
+              <span className="relative flex h-18 w-18 items-center justify-center rounded-full border-2 border-mint bg-transparent text-mint shadow-[0_0_60px_-14px_color-mix(in_oklab,var(--mint)_75%,transparent)] backdrop-blur-[1px] transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-24">
+                <span className="pointer-events-none absolute inset-2 rounded-full border border-black/45" />
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="relative h-8 w-8 translate-x-[1px] sm:h-10 sm:w-10"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8 5.75v12.5L18 12 8 5.75Z"
+                    className="fill-mint stroke-black/70"
+                    strokeWidth="1.4"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </span>
             </div>

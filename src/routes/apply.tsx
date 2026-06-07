@@ -109,9 +109,6 @@ function ApplyPage() {
             <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-balance">
               Apply To Work With Amas
             </h1>
-            <p className="mt-4 sm:mt-5 text-sm sm:text-base text-muted-foreground max-w-lg mx-auto text-balance">
-              For serious traders only. Fill out the application and we'll review if it's a fit.
-            </p>
           </div>
 
           {submitted ? (
@@ -119,7 +116,7 @@ function ApplyPage() {
           ) : (
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="space-y-6 rounded-2xl border border-white/10 bg-surface-1 p-5 sm:p-8"
+              className="space-y-6 rounded-2xl "
               noValidate
             >
               <div>
