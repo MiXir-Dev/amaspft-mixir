@@ -26,8 +26,7 @@ export function TestimonialsSection() {
     <Section
       id="reviews"
       eyebrow="COMMUNITY PROOF"
-      align="center"
-      containerClassName="max-w-none px-0 sm:px-0"
+      containerClassName="max-w-none"
     >
       <div className="mx-auto mb-10 sm:mb-14 flex w-[260px] sm:w-auto sm:max-w-sm flex-col items-center gap-3 rounded-2xl border border-white/10 bg-surface-1 px-6 sm:px-8 py-6 sm:py-7 text-center">
         <Stars rating={parseFloat(APP_CONSTS.whopRating)} />

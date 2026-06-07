@@ -8,18 +8,19 @@ export function PayoutRail() {
     <Section
       id="payouts"
       eyebrow="PAYOUT PROOF"
-      containerClassName="max-w-none px-0 sm:px-0"
+      containerClassName="max-w-none"
     >
       <MarqueeRail
         items={PAYOUTS}
         duration={70}
-        itemClassName="w-[220px] sm:w-[260px] lg:w-[300px]"
+        itemClassName="w-[320px] sm:w-[420px] lg:w-[520px]"
         renderItem={(p) => (
           <ProofCard
             imageSrc={p.imageSrc}
             alt={p.alt}
             bottomLeft={p.amount}
-            topRight="Payout"
+            topRight={p.live ? "Live" : "Payout"}
+            aspect="landscape"
           />
         )}
       />

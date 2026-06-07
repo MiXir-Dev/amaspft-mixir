@@ -1,5 +1,5 @@
 import { useState } from "react";
-import heroPoster from "@/assets/hero-poster.jpg";
+import thumbnailImg from "@/assets/logo/thumbnail.png";
 
 type Props = {
   videoId?: string;
@@ -20,7 +20,7 @@ export function VideoFeature({ videoId }: Props) {
             aria-label="Play video"
           >
             <img
-              src={heroPoster}
+              src={thumbnailImg}
               alt="Amas at his trading desk"
               className="absolute inset-0 h-full w-full object-cover opacity-80"
             />

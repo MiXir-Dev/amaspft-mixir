@@ -3,4 +3,5 @@ export type Payout = {
   amount: string;
   imageSrc: string;
   alt: string;
+  live?: boolean;
 };

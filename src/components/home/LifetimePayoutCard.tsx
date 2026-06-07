@@ -1,5 +1,5 @@
 import { APP_CONSTS } from "@/constants/app.const";
-import lifetimeImg from "@/assets/lifetime-payout.jpg";
+import lifetimeImg from "@/assets/payouts/lifetime.webp";
 
 export function LifetimePayoutCard() {
   return (
@@ -17,12 +17,12 @@ export function LifetimePayoutCard() {
                 Verified payout proof from {APP_CONSTS.traderName}. Withdrawn, settled, on record.
               </p>
             </div>
-            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-surface-2 aspect-[4/3]">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-surface-2 aspect-[16/10] sm:aspect-[1024/663]">
               <img
                 src={lifetimeImg}
                 alt="Lifetime payouts dashboard screenshot"
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>

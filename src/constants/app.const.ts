@@ -5,7 +5,7 @@ export const APP_CONSTS = {
   primaryCta: "Apply to Work With Amas",
   videoUrl: "",
   email: "",
-  lifetimePayouts: "$74,000+",
+  lifetimePayouts: "$XX,XXX+",
   whopRating: "4.83",
   whopReviewCount: 127,
 } as const;

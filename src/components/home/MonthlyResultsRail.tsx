@@ -8,7 +8,7 @@ export function MonthlyResultsRail() {
     <Section
       id="results"
       eyebrow="MONTHLY RESULTS"
-      containerClassName="max-w-none px-0 sm:px-0"
+      containerClassName="max-w-none"
     >
       <MarqueeRail
         items={MONTHLY_RESULTS}

@@ -1,8 +1,8 @@
 import type { Testimonial } from "@/types/testimonial";
-import t1 from "@/assets/testimonial-1.jpg";
-import t2 from "@/assets/testimonial-2.jpg";
-import t3 from "@/assets/testimonial-3.jpg";
-import t4 from "@/assets/testimonial-4.jpg";
+import t1 from "@/assets/testimonials/1.png";
+import t2 from "@/assets/testimonials/2.png";
+import t3 from "@/assets/testimonials/3.png";
+import t4 from "@/assets/testimonials/4.png";
 
 export const TESTIMONIALS: Testimonial[] = [
   { id: "testimonial-001", source: "Discord", imageSrc: t1, alt: "Discord testimonial" },
