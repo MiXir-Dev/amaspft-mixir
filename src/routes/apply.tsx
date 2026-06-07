@@ -37,8 +37,7 @@ const EXPERIENCE_LEVELS = [
 
 type ExperienceLevel = (typeof EXPERIENCE_LEVELS)[number]["value"];
 
-const cleanHandle = (v: string) =>
-  v.trim().replace(/^@+/, "").trim();
+const cleanHandle = (v: string) => v.trim().replace(/^@+/, "").trim();
 
 const schema = z
   .object({
@@ -67,9 +66,12 @@ const schema = z
 
 type FormData = z.infer<typeof schema>;
 
-const labelCls = "block text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2";
+const labelCls =
+  "block text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2";
+
 const inputCls =
   "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
+
 const SUCCESS_CONTACTS = {
   Instagram: {
     href: SOCIAL_LINKS.find((link) => link.label === "Instagram")?.href ?? "#",
@@ -84,7 +86,9 @@ const SUCCESS_CONTACTS = {
 } as const;
 
 function ApplyPage() {
-  const [submitted, setSubmitted] = useState<{ contact: "Instagram" | "X" } | null>(null);
+  const [submitted, setSubmitted] = useState<{ contact: "Instagram" | "X" } | null>(
+    null,
+  );
 
   const {
     register,
@@ -106,125 +110,163 @@ function ApplyPage() {
   const onSubmit = async (data: FormData) => {
     // eslint-disable-next-line no-console
     console.log("Application submitted", data);
+
     await new Promise((r) => setTimeout(r, 500));
+
     const ig = cleanHandle(data.instagram);
     setSubmitted({ contact: ig ? "Instagram" : "X" });
   };
+
+  if (submitted) {
+    return (
+      <PageShell>
+        <section className="relative overflow-hidden px-4 pt-28 pb-8 sm:px-6 sm:pt-36 lg:px-8">
+          <div className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-mint/[0.05] blur-[120px]" />
+
+          <div className="relative mx-auto max-w-sm">
+            <SuccessState contact={submitted.contact} />
+          </div>
+        </section>
+      </PageShell>
+    );
+  }
 
   return (
     <PageShell>
       <section className="relative pt-28 sm:pt-36 md:pt-44 pb-20 sm:pb-24">
         <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[500px] w-[700px] rounded-full bg-mint/[0.05] blur-[120px]" />
+
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-12">
             <span className="font-medium uppercase tracking-[0.22em] text-mint text-xs sm:text-sm">
               APPLICATION
             </span>
+
             <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-balance">
               Apply To Work With Amas
             </h1>
           </div>
 
-          {submitted ? (
-            <SuccessState contact={submitted.contact} />
-          ) : (
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="space-y-6 rounded-2xl "
-              noValidate
-            >
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-6 rounded-2xl"
+            noValidate
+          >
+            <div>
+              <label className={labelCls}>Name</label>
+              <input {...register("name")} className={inputCls} autoComplete="name" />
+
+              {errors.name && (
+                <p className="mt-1 text-xs text-destructive">
+                  {errors.name.message}
+                </p>
+              )}
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
               <div>
-                <label className={labelCls}>Name</label>
-                <input {...register("name")} className={inputCls} autoComplete="name" />
-                {errors.name && (
-                  <p className="mt-1 text-xs text-destructive">{errors.name.message}</p>
+                <label className={labelCls}>Instagram handle</label>
+                <input
+                  {...register("instagram")}
+                  placeholder="@username"
+                  className={inputCls}
+                />
+
+                {errors.instagram && (
+                  <p className="mt-1 text-xs text-destructive">
+                    {errors.instagram.message}
+                  </p>
                 )}
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className={labelCls}>Instagram handle</label>
-                  <input
-                    {...register("instagram")}
-                    placeholder="@username"
-                    className={inputCls}
-                  />
-                  {errors.instagram && (
-                    <p className="mt-1 text-xs text-destructive">{errors.instagram.message}</p>
-                  )}
-                </div>
-                <div>
-                  <label className={labelCls}>𝕏 handle (twitter)</label>
-                  <input
-                    {...register("xHandle")}
-                    placeholder="@username"
-                    className={inputCls}
-                  />
-                  {errors.xHandle && (
-                    <p className="mt-1 text-xs text-destructive">{errors.xHandle.message}</p>
-                  )}
-                </div>
-              </div>
+              <div>
+                <label className={labelCls}>𝕏 handle (twitter)</label>
+                <input
+                  {...register("xHandle")}
+                  placeholder="@username"
+                  className={inputCls}
+                />
 
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label className={labelCls}>How old are you?</label>
-                  <input
-                    type="number"
-                    inputMode="numeric"
-                    min={13}
-                    max={99}
-                    {...register("age")}
-                    className={inputCls}
-                  />
-                  {errors.age && (
-                    <p className="mt-1 text-xs text-destructive">{errors.age.message}</p>
-                  )}
-                </div>
-                <div>
-                  <label className={labelCls}>Where are you from?</label>
-                  <Controller
-                    control={control}
-                    name="country"
-                    render={({ field }) => (
-                      <CountrySelect value={field.value} onChange={field.onChange} />
-                    )}
-                  />
-                  {errors.country && (
-                    <p className="mt-1 text-xs text-destructive">{errors.country.message}</p>
-                  )}
-                </div>
+                {errors.xHandle && (
+                  <p className="mt-1 text-xs text-destructive">
+                    {errors.xHandle.message}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className={labelCls}>How old are you?</label>
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  min={13}
+                  max={99}
+                  {...register("age")}
+                  className={inputCls}
+                />
+
+                {errors.age && (
+                  <p className="mt-1 text-xs text-destructive">
+                    {errors.age.message}
+                  </p>
+                )}
               </div>
 
               <div>
-                <label className={labelCls}>Experience level</label>
+                <label className={labelCls}>Where are you from?</label>
                 <Controller
                   control={control}
-                  name="experience"
+                  name="country"
                   render={({ field }) => (
-                    <ExperienceSelector value={field.value} onChange={field.onChange} />
+                    <CountrySelect value={field.value} onChange={field.onChange} />
                   )}
                 />
-                {errors.experience && (
-                  <p className="mt-1 text-xs text-destructive">{errors.experience.message}</p>
+
+                {errors.country && (
+                  <p className="mt-1 text-xs text-destructive">
+                    {errors.country.message}
+                  </p>
                 )}
               </div>
+            </div>
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center rounded-full bg-mint px-6 py-3.5 text-sm font-medium text-primary-foreground hover:bg-mint-hover transition disabled:opacity-60"
-                >
-                  {isSubmitting ? "Submitting…" : "Submit Application"}
-                </button>
-                <p className="mt-4 text-[11px] text-muted-foreground/80 text-center leading-relaxed">
-                  By submitting, you understand that trading involves risk and results are not
-                  guaranteed.
+            <div>
+              <label className={labelCls}>Experience level</label>
+              <Controller
+                control={control}
+                name="experience"
+                render={({ field }) => (
+                  <ExperienceSelector
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
+              />
+
+              {errors.experience && (
+                <p className="mt-1 text-xs text-destructive">
+                  {errors.experience.message}
                 </p>
-              </div>
-            </form>
-          )}
+              )}
+            </div>
+
+            <div className="pt-2">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full inline-flex items-center justify-center rounded-full bg-mint px-6 py-3.5 text-sm font-medium text-primary-foreground hover:bg-mint-hover transition disabled:opacity-60"
+              >
+                {isSubmitting ? "Submitting…" : "Submit Application"}
+              </button>
+
+              <p className="mt-4 text-[11px] text-muted-foreground/80 text-center leading-relaxed">
+                By submitting, you understand that trading involves risk and results are
+                not guaranteed.
+              </p>
+            </div>
+          </form>
         </div>
       </section>
     </PageShell>
@@ -320,9 +362,11 @@ function CountrySelect({
         <span className="truncate">{value || "Select country"}</span>
         <ChevronDown className="h-4 w-4 opacity-60 shrink-0 ml-2" />
       </button>
+
       {open && (
         <>
           <div className="fixed inset-0 z-20" onClick={() => setOpen(false)} />
+
           <div className="absolute z-30 mt-2 w-full overflow-hidden rounded-xl border border-white/10 bg-surface-2 shadow-2xl">
             <div className="p-2 border-b border-white/10">
               <input
@@ -333,12 +377,17 @@ function CountrySelect({
                 className="w-full rounded-lg bg-surface-1 border border-white/10 px-3 py-2 text-sm focus:outline-none focus:border-mint/50"
               />
             </div>
+
             <ul className="max-h-60 overflow-y-auto py-1">
               {filtered.length === 0 && (
-                <li className="px-4 py-3 text-xs text-muted-foreground">No matches</li>
+                <li className="px-4 py-3 text-xs text-muted-foreground">
+                  No matches
+                </li>
               )}
+
               {filtered.map((c) => {
                 const selected = c === value;
+
                 return (
                   <li key={c}>
                     <button
@@ -385,7 +434,6 @@ function SuccessState({ contact }: { contact: "Instagram" | "X" }) {
             alt={`${TRADER_NAME} profile`}
             className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
           />
-
         </div>
 
         <div className="mt-4 flex items-center gap-1.5">
@@ -402,9 +450,6 @@ function SuccessState({ contact }: { contact: "Instagram" | "X" }) {
       <h2 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
         {TRADER_NAME} will contact you on {details.label} very soon.
       </h2>
-
-      <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground sm:text-base">
-      </p>
 
       <div className="mt-7">
         <CTAButton to="/" variant="ghost">
