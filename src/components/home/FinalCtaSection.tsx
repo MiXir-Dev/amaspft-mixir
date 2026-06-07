@@ -1,5 +1,5 @@
 import { CTAButton } from "@/components/ui/CTAButton";
-import { APP_CONSTS } from "@/constants/app.const";
+import { LIFETIME_PAYOUTS } from "@/constants/app.const";
 import lifetimeImg from "@/assets/payouts/lifetime.webp";
 
 export function FinalCtaSection() {
@@ -12,7 +12,7 @@ export function FinalCtaSection() {
             APPLY
           </span>
           <h2 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-balance leading-[1.05]">
-            Built For The <span className="text-mint">1%</span> Who Execute.
+            Join the <span className="text-mint">1%</span>.
           </h2>
 
           <div className="relative mt-10 w-full">
@@ -20,7 +20,7 @@ export function FinalCtaSection() {
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-surface-1 aspect-[16/10] sm:aspect-[1024/663] mint-glow">
               <img
                 src={lifetimeImg}
-                alt={`${APP_CONSTS.lifetimePayouts} lifetime payouts proof`}
+                alt={`${LIFETIME_PAYOUTS} lifetime payouts proof`}
                 loading="lazy"
                 className="absolute inset-0 h-full w-full object-contain"
               />

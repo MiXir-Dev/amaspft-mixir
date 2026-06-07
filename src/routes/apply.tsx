@@ -6,7 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronDown } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { CTAButton } from "@/components/ui/CTAButton";
+import igProfileImg from "@/assets/logo/ig.jpg";
 import { COUNTRIES } from "@/constants/countries.const";
+import { SOCIAL_LINKS, TRADER_NAME } from "@/constants/app.const";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/apply")({
@@ -48,8 +50,8 @@ const schema = z
       .min(1, "Required")
       .refine((v) => {
         const n = Number(v);
-        return Number.isInteger(n) && n >= 13 && n <= 99;
-      }, "Enter a valid age"),
+        return Number.isInteger(n) && n >= 18 && n <= 99;
+      }, "Enter a valid age (18+)"),
     country: z.string().min(1, "Select your country"),
     experience: z.enum(["new", "intermediate", "experimented"], {
       message: "Select your experience",
@@ -68,6 +70,18 @@ type FormData = z.infer<typeof schema>;
 const labelCls = "block text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2";
 const inputCls =
   "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
+const SUCCESS_CONTACTS = {
+  Instagram: {
+    href: SOCIAL_LINKS.find((link) => link.label === "Instagram")?.href ?? "#",
+    handle: "@amas.pft",
+    label: "Instagram",
+  },
+  X: {
+    href: SOCIAL_LINKS.find((link) => link.label === "X")?.href ?? "#",
+    handle: "@amaspft",
+    label: "X",
+  },
+} as const;
 
 function ApplyPage() {
   const [submitted, setSubmitted] = useState<{ contact: "Instagram" | "X" } | null>(null);
@@ -354,15 +368,44 @@ function CountrySelect({
 }
 
 function SuccessState({ contact }: { contact: "Instagram" | "X" }) {
+  const details = SUCCESS_CONTACTS[contact];
+
   return (
-    <div className="rounded-2xl border border-mint/30 bg-mint/[0.04] p-8 sm:p-10 text-center">
-      <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-mint/15 border border-mint/40">
-        <Check className="h-6 w-6 text-mint" />
-      </div>
-      <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">Submitted.</h2>
-      <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-sm mx-auto">
-        Amas will contact you on {contact}.
+    <div className="mx-auto flex max-w-sm flex-col items-center text-center">
+      <a
+        href={details.href}
+        target="_blank"
+        rel="noreferrer"
+        className="group flex flex-col items-center focus:outline-none"
+        aria-label={`Open ${TRADER_NAME} ${details.label} profile`}
+      >
+        <div className="relative">
+          <img
+            src={igProfileImg}
+            alt={`${TRADER_NAME} profile`}
+            className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
+          />
+
+        </div>
+
+        <div className="mt-4 flex items-center gap-1.5">
+          <span className="text-base font-medium tracking-tight text-foreground sm:text-lg">
+            {details.handle}
+          </span>
+
+          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-mint text-background">
+            <Check className="h-2.5 w-2.5 stroke-[3]" />
+          </span>
+        </div>
+      </a>
+
+      <h2 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
+        {TRADER_NAME} will contact you on {details.label} very soon.
+      </h2>
+
+      <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground sm:text-base">
       </p>
+
       <div className="mt-7">
         <CTAButton to="/" variant="ghost">
           Back Home

@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS } from "@/constants/socials.const";
+import { SOCIAL_LINKS } from "@/constants/app.const";
 
 export function SocialLinksSection() {
   return (

@@ -1,4 +1,4 @@
-import { APP_CONSTS } from "@/constants/app.const";
+import { LIFETIME_PAYOUTS, TRADER_NAME } from "@/constants/app.const";
 import lifetimeImg from "@/assets/payouts/lifetime.webp";
 
 export function LifetimePayoutCard() {
@@ -11,10 +11,10 @@ export function LifetimePayoutCard() {
             <div>
               <span className="text-xs uppercase tracking-[0.2em] text-mint">Lifetime Payouts</span>
               <div className="mt-4 text-6xl sm:text-7xl md:text-8xl font-semibold tracking-tight text-mint leading-none">
-                {APP_CONSTS.lifetimePayouts}
+                {LIFETIME_PAYOUTS}
               </div>
               <p className="mt-6 max-w-md text-sm sm:text-base text-muted-foreground">
-                Verified payout proof from {APP_CONSTS.traderName}. Withdrawn, settled, on record.
+                Verified payout proof from {TRADER_NAME}. Withdrawn, settled, on record.
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-surface-2 aspect-[16/10] sm:aspect-[1024/663]">

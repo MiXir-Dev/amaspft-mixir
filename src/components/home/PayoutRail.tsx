@@ -7,7 +7,7 @@ export function PayoutRail() {
   return (
     <Section
       id="payouts"
-      eyebrow="PAYOUT PROOF ($70,000+)"
+      eyebrow="PAYOUTS ($70,000+)"
       containerClassName="max-w-none"
     >
       <MarqueeRail
