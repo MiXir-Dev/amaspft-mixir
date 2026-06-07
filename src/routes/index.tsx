@@ -7,10 +7,12 @@ import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { SocialLinksSection } from "@/components/home/SocialLinksSection";
 import {
+  ALTERNATE_BRAND_NAME,
   BRAND_DESCRIPTION,
   BRAND_IMAGE_PATH,
+  OG_IMAGE_PATH,
+  OG_X_IMAGE_PATH,
   SAME_AS_LINKS,
-  SHARE_IMAGE_PATH,
   SITE_NAME,
   SITE_URL,
   absoluteUrl,
@@ -19,12 +21,12 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${SITE_NAME} — Official Website` },
+      { title: `${SITE_NAME} | Official Website` },
       {
         name: "description",
         content: BRAND_DESCRIPTION,
       },
-      { property: "og:title", content: `${SITE_NAME} — Official Website` },
+      { property: "og:title", content: `${SITE_NAME} | Official Website` },
       {
         property: "og:description",
         content:
@@ -33,22 +35,24 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:url", content: absoluteUrl("/") },
-      { property: "og:image", content: absoluteUrl(SHARE_IMAGE_PATH) },
+      { property: "og:image", content: absoluteUrl(OG_IMAGE_PATH) },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: `${SITE_NAME} — Official Website` },
+      { name: "twitter:title", content: `${SITE_NAME} | Official Website` },
       {
         name: "twitter:description",
-        content: "Official website of AmasPFT, futures trader.",
+        content:
+          "Official website of AmasPFT, also known as Pockets Full Trading.",
       },
-      { name: "twitter:image", content: absoluteUrl(SHARE_IMAGE_PATH) },
+      { name: "twitter:image", content: absoluteUrl(OG_X_IMAGE_PATH) },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "Person",
           name: SITE_NAME,
+          alternateName: ALTERNATE_BRAND_NAME,
           url: SITE_URL,
           description:
-            "AmasPFT is a futures trader sharing payout proof, monthly results, community testimonials, and application access through his official website.",
+            "AmasPFT, also known as Pockets Full Trading, is a futures trader sharing payout proof, monthly results, community testimonials, and application access through his official website.",
           image: absoluteUrl(BRAND_IMAGE_PATH),
           sameAs: SAME_AS_LINKS,
         },
@@ -57,7 +61,7 @@ export const Route = createFileRoute("/")({
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: `${SITE_NAME} — Official Website`,
+          name: `${SITE_NAME} | Official Website`,
           url: absoluteUrl("/"),
           description: BRAND_DESCRIPTION,
           isPartOf: {

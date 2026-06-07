@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- TODO: Replace https://REPLACE_WITH_FINAL_DOMAIN with the final production domain before launch. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://REPLACE_WITH_FINAL_DOMAIN/</loc>
+    <loc>https://amaspft.com/</loc>
   </url>
   <url>
-    <loc>https://REPLACE_WITH_FINAL_DOMAIN/apply</loc>
+    <loc>https://amaspft.com/apply</loc>
   </url>
 </urlset>

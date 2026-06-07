@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# TODO: Replace with the final production domain before launch.
-Sitemap: https://REPLACE_WITH_FINAL_DOMAIN/sitemap.xml
+Sitemap: https://amaspft.com/sitemap.xml

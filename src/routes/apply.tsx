@@ -9,7 +9,9 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import igProfileImg from "@/assets/logo/ig.jpg";
 import { COUNTRIES } from "@/constants/countries.const";
 import {
-  SHARE_IMAGE_PATH,
+  ALTERNATE_BRAND_NAME,
+  OG_IMAGE_PATH,
+  OG_X_IMAGE_PATH,
   SITE_NAME,
   SITE_URL,
   SOCIAL_LINKS,
@@ -36,14 +38,14 @@ export const Route = createFileRoute("/apply")({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:url", content: absoluteUrl("/apply") },
-      { property: "og:image", content: absoluteUrl(SHARE_IMAGE_PATH) },
+      { property: "og:image", content: absoluteUrl(OG_IMAGE_PATH) },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Apply to Work With AmasPFT" },
       {
         name: "twitter:description",
         content: "Official application page for AmasPFT.",
       },
-      { name: "twitter:image", content: absoluteUrl(SHARE_IMAGE_PATH) },
+      { name: "twitter:image", content: absoluteUrl(OG_X_IMAGE_PATH) },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
@@ -52,6 +54,12 @@ export const Route = createFileRoute("/apply")({
           url: absoluteUrl("/apply"),
           description:
             "Official application page for AmasPFT. Apply to work with AmasPFT’s futures trading community and mentorship experience.",
+          about: {
+            "@type": "Person",
+            name: SITE_NAME,
+            alternateName: ALTERNATE_BRAND_NAME,
+            url: SITE_URL,
+          },
           isPartOf: {
             "@type": "WebSite",
             name: SITE_NAME,

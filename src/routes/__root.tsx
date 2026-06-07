@@ -9,8 +9,10 @@ import {
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import {
+  ALTERNATE_BRAND_NAME,
   BRAND_DESCRIPTION,
-  SHARE_IMAGE_PATH,
+  OG_IMAGE_PATH,
+  OG_X_IMAGE_PATH,
   SITE_NAME,
   SITE_URL,
   TRADER_NAME,
@@ -85,32 +87,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       meta: [
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { title: `${SITE_NAME} — Official Website` },
+        { title: `${SITE_NAME} | Official Website` },
         { name: "description", content: BRAND_DESCRIPTION },
         { name: "author", content: TRADER_NAME },
         { name: "application-name", content: SITE_NAME },
         { name: "theme-color", content: "#050505" },
-        { property: "og:title", content: `${SITE_NAME} — Official Website` },
+        { property: "og:title", content: `${SITE_NAME} | Official Website` },
         { property: "og:description", content: BRAND_DESCRIPTION },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: SITE_NAME },
         { property: "og:url", content: SITE_URL },
-        { property: "og:image", content: absoluteUrl(SHARE_IMAGE_PATH) },
+        { property: "og:image", content: absoluteUrl(OG_IMAGE_PATH) },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:site", content: "@AmasPFT" },
-        { name: "twitter:title", content: `${SITE_NAME} — Official Website` },
+        { name: "twitter:title", content: `${SITE_NAME} | Official Website` },
         {
           name: "twitter:description",
-          content: "Official website of AmasPFT, futures trader.",
+          content:
+            "Official website of AmasPFT, also known as Pockets Full Trading.",
         },
-        { name: "twitter:image", content: absoluteUrl(SHARE_IMAGE_PATH) },
+        { name: "twitter:image", content: absoluteUrl(OG_X_IMAGE_PATH) },
         {
           "script:ld+json": {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: SITE_NAME,
+            alternateName: ALTERNATE_BRAND_NAME,
             url: SITE_URL,
-            description: "Official website of AmasPFT, futures trader.",
+            description:
+              "Official website of AmasPFT, also known as Pockets Full Trading, futures trader.",
             inLanguage: "en",
           },
         },

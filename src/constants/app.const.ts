@@ -8,19 +8,20 @@ import {
 import { WhopIcon } from "@/components/icons/WhopIcon";
 import type { SocialLink } from "@/types/social";
 
-// TODO: Replace with the final production domain before launch.
-export const SITE_URL = "https://REPLACE_WITH_FINAL_DOMAIN";
+export const SITE_URL = "https://amaspft.com";
 export const SITE_NAME = "AmasPFT";
 export const TRADER_NAME = "AmasPFT";
+export const ALTERNATE_BRAND_NAME = "Pockets Full Trading";
 export const BRAND_DESCRIPTION =
-  "Official website of AmasPFT, a futures trader sharing payout proof, monthly results, community testimonials, and application access.";
+  "Official website of AmasPFT, also known as Pockets Full Trading, a futures trader sharing payout proof, monthly results, community testimonials, and application access.";
 export const VIDEO_URL = "https://youtu.be/wjySO5qo7aQ";
 export const PRIMARY_CTA = "Apply to Work With AmasPFT";
 export const LIFETIME_PAYOUTS = "$70,000+";
 export const WHOP_RATING = "4.83";
 export const WHOP_REVIEW_COUNT = 127;
 export const BRAND_IMAGE_PATH = "/amaspft-profile.jpg";
-export const SHARE_IMAGE_PATH = "/og-thumbnail.png";
+export const OG_IMAGE_PATH = "/og.webp";
+export const OG_X_IMAGE_PATH = "/og_x.webp";
 export const X_URL = "https://x.com/amaspft";
 export const INSTAGRAM_URL = "https://www.instagram.com/amas.pft";
 export const YOUTUBE_URL = "https://youtube.com/@amaspft";
