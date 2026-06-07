@@ -1,5 +1,5 @@
 import { BrandLogo } from "@/components/BrandLogo";
-import { APP_CONSTS } from "@/constants/app.const";
+import { TRADER_NAME } from "@/constants/app.const";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <BrandLogo className="hover:text-foreground" imageClassName="h-10 w-10" />
           <p className="text-xs text-muted-foreground">
-            © {currentYear} {APP_CONSTS.legalName}. All rights reserved.
+            © {currentYear} {TRADER_NAME}. All rights reserved.
           </p>
         </div>
         <p className="mt-8 text-[11px] leading-relaxed text-muted-foreground/80 max-w-3xl">
