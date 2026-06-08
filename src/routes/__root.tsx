@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import "yet-another-react-lightbox/styles.css";
 import {
   ALTERNATE_BRAND_NAME,
   BRAND_DESCRIPTION,
