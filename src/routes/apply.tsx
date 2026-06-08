@@ -19,6 +19,7 @@ import {
   absoluteUrl,
 } from "@/constants/app.const";
 import { cn } from "@/lib/utils";
+import { sendTelegramApplication } from "@/server/send-telegram-application";
 
 export const Route = createFileRoute("/apply")({
   head: () => ({
@@ -81,7 +82,16 @@ const EXPERIENCE_LEVELS = [
 
 type ExperienceLevel = (typeof EXPERIENCE_LEVELS)[number]["value"];
 
-const cleanHandle = (v: string) => v.trim().replace(/^@+/, "").trim();
+const cleanHandle = (value: string) => {
+  return value
+    .trim()
+    .replace(/^https?:\/\/(www\.)?(instagram\.com|x\.com|twitter\.com)\//i, "")
+    .replace(/^@+/, "")
+    .replace(/^\/+/, "")
+    .split("?")[0]
+    .split("/")[0]
+    .trim();
+};
 
 const schema = z
   .object({
@@ -152,9 +162,7 @@ function ApplyPage() {
   });
 
   const onSubmit = async (data: FormData) => {
-    console.log("Application submitted", data);
-
-    await new Promise((r) => setTimeout(r, 500));
+    await sendTelegramApplication({ data });
 
     const ig = cleanHandle(data.instagram);
     setSubmitted({ contact: ig ? "Instagram" : "X" });
