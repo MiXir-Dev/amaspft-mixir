@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronDown } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { CTAButton } from "@/components/ui/CTAButton";
-import igProfileImg from "@/assets/logo/ig.jpg";
+import igProfileImg from "@/assets/logo/ig.webp";
 import { COUNTRIES } from "@/constants/countries.const";
 import {
   ALTERNATE_BRAND_NAME,

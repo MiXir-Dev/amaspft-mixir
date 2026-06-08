@@ -9,19 +9,19 @@ import septemberPnl25 from "@/assets/pnl/sep-pnl-25.webp";
 import augustPnl25 from "@/assets/pnl/aug-pnl-25.webp";
 import julyPnl25 from "@/assets/pnl/july-pnl-25.webp";
 import junePnl25 from "@/assets/pnl/june-pnl-25.webp";
-import mayPnl25 from "@/assets/pnl/may-pnl-25.png";
-import aprilPnl25 from "@/assets/pnl/april-pnl-25.png";
-import marchPnl25 from "@/assets/pnl/march-pnl-25.png";
-import februaryPnl25 from "@/assets/pnl/feb-pnl-25.png";
-import januaryPnl25 from "@/assets/pnl/jan-pnl-25.png";
+import mayPnl25 from "@/assets/pnl/may-pnl-25.webp";
+import aprilPnl25 from "@/assets/pnl/april-pnl-25.webp";
+import marchPnl25 from "@/assets/pnl/march-pnl-25.webp";
+import februaryPnl25 from "@/assets/pnl/feb-pnl-25.webp";
+import januaryPnl25 from "@/assets/pnl/jan-pnl-25.webp";
 
-import decemberPnl24 from "@/assets/pnl/dec-pnl-24.png";
-import novemberPnl24 from "@/assets/pnl/nov-pnl-24.png";
-import octoberPnl24 from "@/assets/pnl/oct-pnl-24.png";
-import augustPnl24 from "@/assets/pnl/aug-pnl-24.png";
-import julyPnl24 from "@/assets/pnl/july-pnl-24.png";
-import junePnl24 from "@/assets/pnl/june-pnl-24.png";
-import mayPnl24 from "@/assets/pnl/may-pnl-24.png";
+import decemberPnl24 from "@/assets/pnl/dec-pnl-24.webp";
+import novemberPnl24 from "@/assets/pnl/nov-pnl-24.webp";
+import octoberPnl24 from "@/assets/pnl/oct-pnl-24.webp";
+import augustPnl24 from "@/assets/pnl/aug-pnl-24.webp";
+import julyPnl24 from "@/assets/pnl/july-pnl-24.webp";
+import junePnl24 from "@/assets/pnl/june-pnl-24.webp";
+import mayPnl24 from "@/assets/pnl/may-pnl-24.webp";
 
 export const MONTHLY_RESULTS: MonthlyResult[] = [
   {

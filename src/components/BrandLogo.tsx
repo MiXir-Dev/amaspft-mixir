@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoSrc from "@/assets/logo/logo.png";
+import logoSrc from "@/assets/logo/logo.webp";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {

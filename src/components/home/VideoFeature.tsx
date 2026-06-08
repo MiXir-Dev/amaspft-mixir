@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import thumbnailImg from "@/assets/logo/thumbnail.png";
+import thumbnailImg from "@/assets/logo/thumbnail.webp";
 import { VIDEO_URL } from "@/constants/app.const";
 
 function getYouTubeVideoId(videoUrl: string) {
