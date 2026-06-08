@@ -162,10 +162,14 @@ function ApplyPage() {
   });
 
   const onSubmit = async (data: FormData) => {
-    await sendTelegramApplication({ data });
+    try {
+      await sendTelegramApplication({ data });
 
-    const ig = cleanHandle(data.instagram);
-    setSubmitted({ contact: ig ? "Instagram" : "X" });
+      const ig = cleanHandle(data.instagram);
+      setSubmitted({ contact: ig ? "Instagram" : "X" });
+    } catch (error) {
+      console.error("Application submission failed:", error);
+    }
   };
 
   if (submitted) {
