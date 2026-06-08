@@ -188,11 +188,11 @@ export function TestimonialsSection() {
       <InteractiveMediaRail
         items={TESTIMONIALS}
         speed={0.9}
-        itemClassName="w-[240px] sm:w-[300px] lg:w-[320px]"
+        itemClassName="w-[280px] sm:w-[360px] lg:w-[420px]"
         getImageSrc={(t) => t.imageSrc}
         getImageAlt={(t) => t.alt}
         renderItem={(t) => (
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-surface-1">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-surface-1">
             <img
               src={t.imageSrc}
               alt={t.alt}
