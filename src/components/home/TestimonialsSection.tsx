@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Section } from "@/components/ui/Section";
-import { MarqueeRail } from "@/components/ui/MarqueeRail";
+import { InteractiveMediaRail } from "@/components/ui/InteractiveMediaRail";
 import { TESTIMONIALS } from "@/constants/testimonials.const";
 import { WHOP_RATING, WHOP_REVIEW_COUNT } from "@/constants/app.const";
 
@@ -185,10 +185,12 @@ export function TestimonialsSection() {
     <Section id="reviews" eyebrow="OUR COMMUNITY" containerClassName="max-w-none">
       <RatingCard />
 
-      <MarqueeRail
+      <InteractiveMediaRail
         items={TESTIMONIALS}
-        duration={90}
+        speed={0.9}
         itemClassName="w-[240px] sm:w-[300px] lg:w-[320px]"
+        getImageSrc={(t) => t.imageSrc}
+        getImageAlt={(t) => t.alt}
         renderItem={(t) => (
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-surface-1">
             <img

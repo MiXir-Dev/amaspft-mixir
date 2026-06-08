@@ -1,5 +1,5 @@
 import { Section } from "@/components/ui/Section";
-import { MarqueeRail } from "@/components/ui/MarqueeRail";
+import { InteractiveMediaRail } from "@/components/ui/InteractiveMediaRail";
 import { ProofCard } from "@/components/ui/ProofCard";
 import { MONTHLY_RESULTS } from "@/constants/monthly-results.const";
 
@@ -10,10 +10,12 @@ export function MonthlyResultsRail() {
       eyebrow="MONTHLY RESULTS"
       containerClassName="max-w-none"
     >
-      <MarqueeRail
+      <InteractiveMediaRail
         items={MONTHLY_RESULTS}
-        duration={80}
+        speed={1}
         itemClassName="w-[280px] sm:w-[360px] lg:w-[420px]"
+        getImageSrc={(r) => r.imageSrc}
+        getImageAlt={(r) => r.alt}
         renderItem={(r) => (
           <ProofCard
             imageSrc={r.imageSrc}
