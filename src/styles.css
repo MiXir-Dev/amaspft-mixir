@@ -89,6 +89,13 @@
     color-scheme: dark;
   }
 
+  @media (min-width: 768px) {
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5.5rem;
+    }
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -131,5 +138,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .animate-marquee { animation: none !important; }
 }
