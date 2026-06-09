@@ -59,15 +59,11 @@ export function getAnalyticsHeadScripts() {
 
   return [
     {
-      tag: "script" as const,
-      attrs: {
-        id: GA_SCRIPT_ID,
-        async: true,
-        src: `${GA_SCRIPT_SOURCE}?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`,
-      },
+      id: GA_SCRIPT_ID,
+      async: true,
+      src: `${GA_SCRIPT_SOURCE}?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`,
     },
     {
-      tag: "script" as const,
       children: [
         "window.dataLayer = window.dataLayer || [];",
         "function gtag(){dataLayer.push(arguments);}",
