@@ -1,5 +1,6 @@
 const GA_SCRIPT_SOURCE = "https://www.googletagmanager.com/gtag/js";
 const GA_SCRIPT_ID = "google-analytics";
+const DEFAULT_GA_MEASUREMENT_ID = "G-GQ567SD3VJ";
 
 declare global {
   interface Window {
@@ -8,7 +9,8 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
+export const GA_MEASUREMENT_ID =
+  import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || DEFAULT_GA_MEASUREMENT_ID;
 
 let analyticsBootstrapped = false;
 let lastTrackedPath: string | null = null;
@@ -30,13 +32,16 @@ export function initAnalytics() {
     return;
   }
 
-  analyticsBootstrapped = true;
   window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || gtag;
+  if (window.gtag) {
+    analyticsBootstrapped = true;
+    return;
+  }
+
+  analyticsBootstrapped = true;
+  window.gtag = gtag;
   window.gtag("js", new Date());
-  window.gtag("config", GA_MEASUREMENT_ID, {
-    send_page_view: false,
-  });
+  window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
 
   if (!document.getElementById(GA_SCRIPT_ID)) {
     const script = document.createElement("script");
@@ -45,6 +50,32 @@ export function initAnalytics() {
     script.src = `${GA_SCRIPT_SOURCE}?id=${encodeURIComponent(GA_MEASUREMENT_ID!)}`;
     document.head.append(script);
   }
+}
+
+export function getAnalyticsHeadScripts() {
+  if (!GA_MEASUREMENT_ID) {
+    return [];
+  }
+
+  return [
+    {
+      tag: "script" as const,
+      attrs: {
+        id: GA_SCRIPT_ID,
+        async: true,
+        src: `${GA_SCRIPT_SOURCE}?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`,
+      },
+    },
+    {
+      tag: "script" as const,
+      children: [
+        "window.dataLayer = window.dataLayer || [];",
+        "function gtag(){dataLayer.push(arguments);}",
+        "gtag('js', new Date());",
+        `gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });`,
+      ].join("\n"),
+    },
+  ];
 }
 
 export function trackPageView(path = getPagePath()) {

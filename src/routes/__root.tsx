@@ -20,6 +20,7 @@ import {
   absoluteUrl,
 } from "@/constants/app.const";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
+import { getAnalyticsHeadScripts } from "@/lib/analytics";
 
 import appCss from "../styles.css?url";
 
@@ -136,6 +137,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
         { rel: "stylesheet", href: appCss },
       ],
+      scripts: getAnalyticsHeadScripts(),
     }),
     shellComponent: RootShell,
     component: RootComponent,
