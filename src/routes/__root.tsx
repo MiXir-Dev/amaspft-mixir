@@ -19,6 +19,7 @@ import {
   TRADER_NAME,
   absoluteUrl,
 } from "@/constants/app.const";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 
 import appCss from "../styles.css?url";
 
@@ -162,6 +163,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AnalyticsTracker />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
