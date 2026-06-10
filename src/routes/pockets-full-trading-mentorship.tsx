@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -131,7 +131,7 @@ const labelCls =
   "block text-xs uppercase tracking-[0.18em] text-muted-foreground mb-2";
 
 const inputCls =
-  "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
+  "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-base sm:text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
 
 const SUCCESS_CONTACTS = {
   Instagram: {
@@ -167,6 +167,21 @@ function ApplyPage() {
       experience: undefined as unknown as ExperienceLevel,
     },
   });
+
+  useEffect(() => {
+    if (!submitted || typeof window === "undefined") return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
+    });
+  }, [submitted]);
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -444,7 +459,7 @@ function CountrySelect({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search…"
-                className="w-full rounded-lg bg-surface-1 border border-white/10 px-3 py-2 text-sm focus:outline-none focus:border-mint/50"
+                className="w-full rounded-lg bg-surface-1 border border-white/10 px-3 py-2 text-base sm:text-sm focus:outline-none focus:border-mint/50"
               />
             </div>
 
