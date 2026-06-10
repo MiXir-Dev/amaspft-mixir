@@ -4,19 +4,18 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronDown } from "lucide-react";
-import { FaInstagram } from "react-icons/fa6";
+import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { PageShell } from "@/components/layout/PageShell";
-import { CTAButton } from "@/components/ui/CTAButton";
-import igProfileImg from "@/assets/logo/ig.webp";
 import { COUNTRIES } from "@/constants/countries.const";
 import {
   ALTERNATE_BRAND_NAME,
   AppRoute,
+  MENTORSHIP_SUCCESS_CONTACTS,
+  type MentorshipContactChannel,
   OG_IMAGE_PATH,
   OG_X_IMAGE_PATH,
   SITE_NAME,
   SITE_URL,
-  SOCIAL_LINKS,
   TRADER_NAME,
   absoluteUrl,
 } from "@/constants/app.const";
@@ -134,15 +133,10 @@ const labelCls =
 const inputCls =
   "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-base sm:text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
 
-const SUCCESS_CONTACT = {
-  href: SOCIAL_LINKS.find((link) => link.label === "Instagram")?.href ?? "#",
-  dmHref: "https://ig.me/m/amas.pft",
-  handle: "@amas.pft",
-  label: "Instagram",
-} as const;
-
 function ApplyPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState<{
+    contact: MentorshipContactChannel;
+  } | null>(null);
 
   const {
     register,
@@ -179,7 +173,12 @@ function ApplyPage() {
   const onSubmit = async (data: FormData) => {
     try {
       await sendTelegramApplication({ data });
-      setSubmitted(true);
+      const preferredContact: MentorshipContactChannel = cleanHandle(
+        data.instagram,
+      )
+        ? "Instagram"
+        : "X";
+      setSubmitted({ contact: preferredContact });
     } catch (error) {
       console.error("Application submission failed:", error);
     }
@@ -192,7 +191,7 @@ function ApplyPage() {
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-mint/[0.05] blur-[120px]" />
 
           <div className="relative mx-auto max-w-sm">
-            <SuccessState />
+            <SuccessState contact={submitted.contact} />
           </div>
         </section>
       </PageShell>
@@ -492,22 +491,23 @@ function CountrySelect({
   );
 }
 
-function SuccessState() {
-  const details = SUCCESS_CONTACT;
+function SuccessState({ contact }: { contact: MentorshipContactChannel }) {
+  const details = MENTORSHIP_SUCCESS_CONTACTS[contact];
+  const ContactIcon = contact === "Instagram" ? FaInstagram : FaXTwitter;
 
   return (
     <div className="mx-auto flex max-w-sm flex-col items-center text-center">
       <a
-        href={details.dmHref}
+        href={details.actionHref}
         target="_blank"
         rel="noreferrer"
         className="group flex flex-col items-center focus:outline-none"
-        aria-label={`DM ${TRADER_NAME} on Instagram`}
+        aria-label={details.ariaLabel}
       >
         <div className="relative">
           <img
-            src={igProfileImg}
-            alt="AmasPFT Instagram profile photo"
+            src={details.imagePath}
+            alt={details.imageAlt}
             className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
           />
         </div>
@@ -524,7 +524,7 @@ function SuccessState() {
       </a>
 
       <h2 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
-        DM {TRADER_NAME} on Instagram.
+        DM {TRADER_NAME} on {details.label}.
       </h2>
 
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -533,17 +533,17 @@ function SuccessState() {
 
       <div className="mt-7 flex w-full flex-col gap-3">
         <a
-          href={details.dmHref}
+          href={details.actionHref}
           target="_blank"
           rel="noreferrer"
           className="inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-3.5 gap-2 text-sm font-medium text-primary-foreground transition hover:bg-mint-hover"
         >
-          <FaInstagram
+          <ContactIcon
             className="h-4 w-4 shrink-0"
-            style={{ color: "#E4405F" }}
+            style={{ color: details.iconColor }}
             aria-hidden="true"
           />
-          DM {TRADER_NAME} on Instagram
+          {details.actionLabel}
         </a>
       </div>
     </div>

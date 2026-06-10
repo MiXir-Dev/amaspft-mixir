@@ -8,6 +8,8 @@ import {
 import { WhopIcon } from "@/components/icons/WhopIcon";
 import type { SocialLink } from "@/types/social";
 
+export type MentorshipContactChannel = "Instagram" | "X";
+
 export const SITE_URL = "https://amaspft.com";
 export const SITE_NAME = "AmasPFT";
 export const TRADER_NAME = "AmasPFT";
@@ -35,6 +37,9 @@ export const YOUTUBE_URL = "https://youtube.com/@amaspft";
 export const TIKTOK_URL = "https://www.tiktok.com/@amas_pft";
 export const DISCORD_URL = "https://discord.com/invite/jVWuy5CvDX";
 export const WHOP_URL = "https://whop.com/vip-ff-e142/";
+export const INSTAGRAM_DM_URL = "https://ig.me/m/amas.pft";
+export const INSTAGRAM_PROFILE_IMAGE_PATH = "/amaspft-profile-ig.webp";
+export const X_PROFILE_IMAGE_PATH = "/amaspft-profile-x.webp";
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { label: "X", href: X_URL, icon: FaXTwitter },
@@ -46,6 +51,44 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 export const SAME_AS_LINKS = SOCIAL_LINKS.map((link) => link.href);
+
+export const MENTORSHIP_SUCCESS_CONTACTS: Record<
+  MentorshipContactChannel,
+  {
+    actionHref: string;
+    actionLabel: string;
+    ariaLabel: string;
+    handle: string;
+    iconColor: string;
+    imageAlt: string;
+    imagePath: string;
+    label: "Instagram" | "X";
+    message: string;
+  }
+> = {
+  Instagram: {
+    actionHref: INSTAGRAM_DM_URL,
+    actionLabel: "DM Amas on Instagram",
+    ariaLabel: "DM AmasPFT on Instagram",
+    handle: "@amas.pft",
+    iconColor: "#E4405F",
+    imageAlt: "AmasPFT Instagram profile photo",
+    imagePath: INSTAGRAM_PROFILE_IMAGE_PATH,
+    label: "Instagram",
+    message: "He is waiting for your message now.",
+  },
+  X: {
+    actionHref: X_URL,
+    actionLabel: "Message Amas on X",
+    ariaLabel: "Open AmasPFT on X",
+    handle: "@AmasPFT",
+    iconColor: "#111111",
+    imageAlt: "AmasPFT X profile photo",
+    imagePath: X_PROFILE_IMAGE_PATH,
+    label: "X",
+    message: "He is waiting for your message now.",
+  },
+};
 
 export function absoluteUrl(path = "/") {
   return new URL(path, SITE_URL).toString();
