@@ -10,6 +10,7 @@ import igProfileImg from "@/assets/logo/ig.webp";
 import { COUNTRIES } from "@/constants/countries.const";
 import {
   ALTERNATE_BRAND_NAME,
+  AppRoute,
   OG_IMAGE_PATH,
   OG_X_IMAGE_PATH,
   SITE_NAME,
@@ -21,40 +22,46 @@ import {
 import { cn } from "@/lib/utils";
 import { sendTelegramApplication } from "@/server/send-telegram-application";
 
-export const Route = createFileRoute("/apply")({
+export const Route = createFileRoute("/pockets-full-trading-mentorship")({
   head: () => ({
     meta: [
-      { title: "Apply to Work With AmasPFT" },
+      { title: "Pockets Full Trading Mentorship | AmasPFT" },
       {
         name: "description",
         content:
-          "Official application page for AmasPFT. Apply to work with AmasPFT’s futures trading community and mentorship experience.",
+          "Official mentorship page for AmasPFT. Apply to join the Pockets Full Trading mentorship and futures trading community.",
       },
-      { property: "og:title", content: "Apply to Work With AmasPFT" },
+      {
+        property: "og:title",
+        content: "Pockets Full Trading Mentorship | AmasPFT",
+      },
       {
         property: "og:description",
         content:
-          "Official AmasPFT application page for traders interested in the community and mentorship experience.",
+          "Official mentorship page for traders interested in the Pockets Full Trading community and AmasPFT mentorship experience.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: SITE_NAME },
-      { property: "og:url", content: absoluteUrl("/apply") },
+      { property: "og:url", content: absoluteUrl(AppRoute.MENTORSHIP) },
       { property: "og:image", content: absoluteUrl(OG_IMAGE_PATH) },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Apply to Work With AmasPFT" },
+      {
+        name: "twitter:title",
+        content: "Pockets Full Trading Mentorship | AmasPFT",
+      },
       {
         name: "twitter:description",
-        content: "Official application page for AmasPFT.",
+        content: "Official mentorship page for AmasPFT.",
       },
       { name: "twitter:image", content: absoluteUrl(OG_X_IMAGE_PATH) },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "WebPage",
-          name: "Apply to Work With AmasPFT",
-          url: absoluteUrl("/apply"),
+          name: "Pockets Full Trading Mentorship",
+          url: absoluteUrl(AppRoute.MENTORSHIP),
           description:
-            "Official application page for AmasPFT. Apply to work with AmasPFT’s futures trading community and mentorship experience.",
+            "Official mentorship page for AmasPFT. Apply to join the Pockets Full Trading mentorship and futures trading community.",
           about: {
             "@type": "Person",
             name: SITE_NAME,
@@ -69,7 +76,7 @@ export const Route = createFileRoute("/apply")({
         },
       },
     ],
-    links: [{ rel: "canonical", href: absoluteUrl("/apply") }],
+    links: [{ rel: "canonical", href: absoluteUrl(AppRoute.MENTORSHIP) }],
   }),
   component: ApplyPage,
 });

@@ -1,5 +1,5 @@
 import { CTAButton } from "@/components/ui/CTAButton";
-import { LIFETIME_PAYOUTS } from "@/constants/app.const";
+import { AppRoute, LIFETIME_PAYOUTS } from "@/constants/app.const";
 import lifetimeImg from "@/assets/payouts/lifetime.webp";
 
 export function FinalCtaSection() {
@@ -29,7 +29,7 @@ export function FinalCtaSection() {
 
           <div className="mt-8 flex justify-center">
             <CTAButton
-              to="/apply"
+              to={AppRoute.MENTORSHIP}
               className="w-full sm:w-auto"
               aria-label="Apply to Work With AmasPFT"
             >

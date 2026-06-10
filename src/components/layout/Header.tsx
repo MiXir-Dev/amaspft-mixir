@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AppRoute } from "@/constants/app.const";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "@/constants/navigation.const";
 import { CTAButton } from "@/components/ui/CTAButton";
@@ -39,7 +40,7 @@ export function Header() {
         </nav>
 
         <CTAButton
-          to="/apply"
+          to={AppRoute.MENTORSHIP}
           variant="primary"
           className="px-4 py-2 text-xs sm:text-sm"
           aria-label="Apply to Work With AmasPFT"

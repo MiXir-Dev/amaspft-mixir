@@ -1,6 +1,11 @@
 import { CTAButton } from "@/components/ui/CTAButton";
 import { VideoFeature } from "./VideoFeature";
-import { PRIMARY_CTA, SITE_NAME, TRADER_NAME } from "@/constants/app.const";
+import {
+  AppRoute,
+  PRIMARY_CTA,
+  SITE_NAME,
+  TRADER_NAME,
+} from "@/constants/app.const";
 
 export function HeroSection() {
   return (
@@ -26,7 +31,7 @@ export function HeroSection() {
         </div>
 
         <CTAButton
-          to="/apply"
+          to={AppRoute.MENTORSHIP}
           className="w-auto"
           aria-label="Apply to Work With AmasPFT"
         >
