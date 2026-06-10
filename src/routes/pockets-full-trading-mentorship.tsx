@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronDown } from "lucide-react";
+import { FaInstagram } from "react-icons/fa6";
 import { PageShell } from "@/components/layout/PageShell";
 import { CTAButton } from "@/components/ui/CTAButton";
 import igProfileImg from "@/assets/logo/ig.webp";
@@ -133,23 +134,15 @@ const labelCls =
 const inputCls =
   "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-base sm:text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
 
-const SUCCESS_CONTACTS = {
-  Instagram: {
-    href: SOCIAL_LINKS.find((link) => link.label === "Instagram")?.href ?? "#",
-    handle: "@amas.pft",
-    label: "Instagram",
-  },
-  X: {
-    href: SOCIAL_LINKS.find((link) => link.label === "X")?.href ?? "#",
-    handle: "@amaspft",
-    label: "X",
-  },
+const SUCCESS_CONTACT = {
+  href: SOCIAL_LINKS.find((link) => link.label === "Instagram")?.href ?? "#",
+  dmHref: "https://ig.me/m/amas.pft",
+  handle: "@amas.pft",
+  label: "Instagram",
 } as const;
 
 function ApplyPage() {
-  const [submitted, setSubmitted] = useState<{
-    contact: "Instagram" | "X";
-  } | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const {
     register,
@@ -186,9 +179,7 @@ function ApplyPage() {
   const onSubmit = async (data: FormData) => {
     try {
       await sendTelegramApplication({ data });
-
-      const ig = cleanHandle(data.instagram);
-      setSubmitted({ contact: ig ? "Instagram" : "X" });
+      setSubmitted(true);
     } catch (error) {
       console.error("Application submission failed:", error);
     }
@@ -201,7 +192,7 @@ function ApplyPage() {
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-mint/[0.05] blur-[120px]" />
 
           <div className="relative mx-auto max-w-sm">
-            <SuccessState contact={submitted.contact} />
+            <SuccessState />
           </div>
         </section>
       </PageShell>
@@ -501,26 +492,22 @@ function CountrySelect({
   );
 }
 
-function SuccessState({ contact }: { contact: "Instagram" | "X" }) {
-  const details = SUCCESS_CONTACTS[contact];
+function SuccessState() {
+  const details = SUCCESS_CONTACT;
 
   return (
     <div className="mx-auto flex max-w-sm flex-col items-center text-center">
       <a
-        href={details.href}
+        href={details.dmHref}
         target="_blank"
         rel="noreferrer"
         className="group flex flex-col items-center focus:outline-none"
-        aria-label={`Open ${TRADER_NAME} ${details.label} profile`}
+        aria-label={`DM ${TRADER_NAME} on Instagram`}
       >
         <div className="relative">
           <img
             src={igProfileImg}
-            alt={
-              details.label === "Instagram"
-                ? "AmasPFT Instagram profile photo"
-                : "AmasPFT profile photo"
-            }
+            alt="AmasPFT Instagram profile photo"
             className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
           />
         </div>
@@ -537,13 +524,27 @@ function SuccessState({ contact }: { contact: "Instagram" | "X" }) {
       </a>
 
       <h2 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
-        {TRADER_NAME} will contact you on {details.label} very soon.
+        DM {TRADER_NAME} on Instagram.
       </h2>
 
-      <div className="mt-7">
-        <CTAButton to="/" variant="ghost">
-          Back Home
-        </CTAButton>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+        He is waiting for your message now.
+      </p>
+
+      <div className="mt-7 flex w-full flex-col gap-3">
+        <a
+          href={details.dmHref}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-3.5 gap-2 text-sm font-medium text-primary-foreground transition hover:bg-mint-hover"
+        >
+          <FaInstagram
+            className="h-4 w-4 shrink-0"
+            style={{ color: "#E4405F" }}
+            aria-hidden="true"
+          />
+          DM {TRADER_NAME} on Instagram
+        </a>
       </div>
     </div>
   );
