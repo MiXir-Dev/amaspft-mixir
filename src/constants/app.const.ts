@@ -61,13 +61,13 @@ export const MENTORSHIP_SUCCESS_CONTACTS: Record<
     iconColor: string;
     imageAlt: string;
     imagePath: string;
-    label: "Instagram" | "X";
+    label: "Instagram" | "𝕏";
     message: string;
   }
 > = {
   Instagram: {
     actionHref: INSTAGRAM_DM_URL,
-    actionLabel: 'DM Amas "MENTORSHIP" on Instagram',
+    actionLabel: 'DM "MENTORSHIP" on Instagram',
     ariaLabel: "DM AmasPFT for mentorship on Instagram",
     handle: "@amas.pft",
     iconColor: "#E4405F",
@@ -78,13 +78,13 @@ export const MENTORSHIP_SUCCESS_CONTACTS: Record<
   },
   X: {
     actionHref: X_URL,
-    actionLabel: 'DM Amas "MENTORSHIP" on X',
-    ariaLabel: "DM AmasPFT for mentorship on X",
+    actionLabel: 'DM "MENTORSHIP" on 𝕏',
+    ariaLabel: "DM AmasPFT for mentorship on 𝕏",
     handle: "@AmasPFT",
     iconColor: "#111111",
     imageAlt: "AmasPFT X profile photo",
     imagePath: X_PROFILE_IMAGE_PATH,
-    label: "X",
+    label: "𝕏",
     message: "He is waiting for your message now.",
   },
 };

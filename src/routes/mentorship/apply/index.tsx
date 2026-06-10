@@ -153,7 +153,7 @@ export function MentorshipApply() {
             </a>
 
             <h2 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
-              DM {TRADER_NAME}{" "}
+              DM me{" "}
               <span
                 className="text-mint"
                 style={{ textShadow: "0 0 8px color-mix(in oklab, var(--mint) 22%, transparent)" }}
