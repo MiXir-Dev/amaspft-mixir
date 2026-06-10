@@ -7,7 +7,7 @@ const applicationSchema = z.object({
   xHandle: z.string().trim().max(60),
   age: z.string().trim().min(1).max(3),
   country: z.string().trim().min(1).max(100),
-  experience: z.enum(["new", "intermediate", "experimented"]),
+  experience: z.enum(["new", "intermediate", "experienced"]),
 });
 
 type ApplicationData = z.infer<typeof applicationSchema>;
@@ -30,9 +30,14 @@ const escapeHtml = (value: string) => {
     .replaceAll(">", "&gt;");
 };
 
+const EXPERIENCE_LABELS: Record<ApplicationData["experience"], string> = {
+  new: "New",
+  intermediate: "Intermediate",
+  experienced: "Experienced",
+};
+
 const getExperienceLabel = (experience: ApplicationData["experience"]) => {
-  if (experience === "experimented") return "expert";
-  return experience;
+  return EXPERIENCE_LABELS[experience];
 };
 
 const buildInstagramUrl = (handle: string) => {
@@ -47,25 +52,31 @@ const buildTelegramMessage = (data: ApplicationData) => {
   const instagram = cleanHandle(data.instagram);
   const xHandle = cleanHandle(data.xHandle);
 
-  const lines: string[] = ["new application"];
+  const contactLines: string[] = [];
 
   if (instagram) {
-    lines.push(
-      `<a href="${buildInstagramUrl(instagram)}">@${escapeHtml(instagram)}</a> (ig)`,
+    contactLines.push(
+      `<b>Instagram:</b> <a href="${buildInstagramUrl(instagram)}">@${escapeHtml(instagram)}</a>`,
     );
   }
 
   if (xHandle) {
-    lines.push(
-      `<a href="${buildXUrl(xHandle)}">@${escapeHtml(xHandle)}</a> (x)`,
+    contactLines.push(
+      `<b>X:</b> <a href="${buildXUrl(xHandle)}">@${escapeHtml(xHandle)}</a>`,
     );
   }
 
-  lines.push(
-    `${escapeHtml(data.age)} years old [${getExperienceLabel(data.experience)}]`,
-  );
-
-  return lines.join("\n");
+  return [
+    "<b>New Mentorship Application</b>",
+    "",
+    `<b>Name:</b> ${escapeHtml(data.name)}`,
+    `<b>Age:</b> ${escapeHtml(data.age)}`,
+    `<b>Country:</b> ${escapeHtml(data.country)}`,
+    `<b>Experience:</b> ${getExperienceLabel(data.experience)}`,
+    "",
+    "<b>Contact</b>",
+    ...contactLines,
+  ].join("\n");
 };
 
 export const sendTelegramApplication = createServerFn({ method: "POST" })

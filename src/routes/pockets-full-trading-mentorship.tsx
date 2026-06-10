@@ -84,7 +84,7 @@ export const Route = createFileRoute("/pockets-full-trading-mentorship")({
 const EXPERIENCE_LEVELS = [
   { value: "new", label: "New" },
   { value: "intermediate", label: "Intermediate" },
-  { value: "experimented", label: "Experimented" },
+  { value: "experienced", label: "Experienced" },
 ] as const;
 
 type ExperienceLevel = (typeof EXPERIENCE_LEVELS)[number]["value"];
@@ -113,7 +113,7 @@ const schema = z
         return Number.isInteger(n) && n >= 18 && n <= 99;
       }, "Enter a valid age (18+)"),
     country: z.string().min(1, "Select your country"),
-    experience: z.enum(["new", "intermediate", "experimented"], {
+    experience: z.enum(["new", "intermediate", "experienced"], {
       message: "Select your experience",
     }),
   })
