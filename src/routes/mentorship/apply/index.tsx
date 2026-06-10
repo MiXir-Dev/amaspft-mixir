@@ -153,10 +153,17 @@ export function MentorshipApply() {
             </a>
 
             <h2 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
-              DM {TRADER_NAME} on {details.label}.
+              DM {TRADER_NAME}{" "}
+              <span
+                className="text-mint"
+                style={{ textShadow: "0 0 8px color-mix(in oklab, var(--mint) 22%, transparent)" }}
+              >
+                "MENTORSHIP"
+              </span>{" "}
+              on {details.label}.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              He is waiting for your message now.
+              {details.message}
             </p>
             <a
               href={details.actionHref}

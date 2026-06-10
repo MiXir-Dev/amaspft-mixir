@@ -67,8 +67,8 @@ export const MENTORSHIP_SUCCESS_CONTACTS: Record<
 > = {
   Instagram: {
     actionHref: INSTAGRAM_DM_URL,
-    actionLabel: "DM Amas on Instagram",
-    ariaLabel: "DM AmasPFT on Instagram",
+    actionLabel: 'DM Amas "MENTORSHIP" on Instagram',
+    ariaLabel: "DM AmasPFT for mentorship on Instagram",
     handle: "@amas.pft",
     iconColor: "#E4405F",
     imageAlt: "AmasPFT Instagram profile photo",
@@ -78,8 +78,8 @@ export const MENTORSHIP_SUCCESS_CONTACTS: Record<
   },
   X: {
     actionHref: X_URL,
-    actionLabel: "Message Amas on X",
-    ariaLabel: "Open AmasPFT on X",
+    actionLabel: 'DM Amas "MENTORSHIP" on X',
+    ariaLabel: "DM AmasPFT for mentorship on X",
     handle: "@AmasPFT",
     iconColor: "#111111",
     imageAlt: "AmasPFT X profile photo",
