@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logoSrc from "@/assets/logo/logo.webp";
+import { AppRoute } from "@/constants/app.const";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
@@ -15,7 +16,7 @@ export function BrandLogo({
 }: BrandLogoProps) {
   return (
     <Link
-      to="/"
+      to={AppRoute.HOME}
       className={cn(
         "inline-flex items-center gap-3 text-sm font-semibold tracking-tight text-foreground transition-colors hover:text-mint",
         className,

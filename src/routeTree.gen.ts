@@ -9,56 +9,58 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PocketsFullTradingMentorshipRouteImport } from './routes/pockets-full-trading-mentorship'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MentorshipIndexRouteImport } from './routes/mentorship/index'
+import { Route as MentorshipApplyIndexRouteImport } from './routes/mentorship/apply/index'
 
-const PocketsFullTradingMentorshipRoute =
-  PocketsFullTradingMentorshipRouteImport.update({
-    id: '/pockets-full-trading-mentorship',
-    path: '/pockets-full-trading-mentorship',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MentorshipIndexRoute = MentorshipIndexRouteImport.update({
+  id: '/mentorship/',
+  path: '/mentorship/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorshipApplyIndexRoute = MentorshipApplyIndexRouteImport.update({
+  id: '/mentorship/apply/',
+  path: '/mentorship/apply/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/pockets-full-trading-mentorship': typeof PocketsFullTradingMentorshipRoute
+  '/mentorship/': typeof MentorshipIndexRoute
+  '/mentorship/apply/': typeof MentorshipApplyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/pockets-full-trading-mentorship': typeof PocketsFullTradingMentorshipRoute
+  '/mentorship': typeof MentorshipIndexRoute
+  '/mentorship/apply': typeof MentorshipApplyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/pockets-full-trading-mentorship': typeof PocketsFullTradingMentorshipRoute
+  '/mentorship/': typeof MentorshipIndexRoute
+  '/mentorship/apply/': typeof MentorshipApplyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pockets-full-trading-mentorship'
+  fullPaths: '/' | '/mentorship/' | '/mentorship/apply/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pockets-full-trading-mentorship'
-  id: '__root__' | '/' | '/pockets-full-trading-mentorship'
+  to: '/' | '/mentorship' | '/mentorship/apply'
+  id: '__root__' | '/' | '/mentorship/' | '/mentorship/apply/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PocketsFullTradingMentorshipRoute: typeof PocketsFullTradingMentorshipRoute
+  MentorshipIndexRoute: typeof MentorshipIndexRoute
+  MentorshipApplyIndexRoute: typeof MentorshipApplyIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/pockets-full-trading-mentorship': {
-      id: '/pockets-full-trading-mentorship'
-      path: '/pockets-full-trading-mentorship'
-      fullPath: '/pockets-full-trading-mentorship'
-      preLoaderRoute: typeof PocketsFullTradingMentorshipRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -66,12 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mentorship/': {
+      id: '/mentorship/'
+      path: '/mentorship'
+      fullPath: '/mentorship/'
+      preLoaderRoute: typeof MentorshipIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentorship/apply/': {
+      id: '/mentorship/apply/'
+      path: '/mentorship/apply'
+      fullPath: '/mentorship/apply/'
+      preLoaderRoute: typeof MentorshipApplyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PocketsFullTradingMentorshipRoute: PocketsFullTradingMentorshipRoute,
+  MentorshipIndexRoute: MentorshipIndexRoute,
+  MentorshipApplyIndexRoute: MentorshipApplyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

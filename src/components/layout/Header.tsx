@@ -11,7 +11,7 @@ export function Header() {
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   });
-  const isMentorshipPage = pathname === AppRoute.MENTORSHIP;
+  const isApplyPage = pathname.startsWith(AppRoute.MENTORSHIP_APPLY);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -44,9 +44,9 @@ export function Header() {
           ))}
         </nav>
 
-        {!isMentorshipPage && (
+        {!isApplyPage && (
           <CTAButton
-            to={AppRoute.MENTORSHIP}
+            to={AppRoute.MENTORSHIP_APPLY}
             variant="primary"
             className="shrink-0 px-4 py-2 text-xs sm:text-sm"
             aria-label="Apply to Work With AmasPFT"

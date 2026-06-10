@@ -31,7 +31,7 @@ export function HeroSection() {
         </div>
 
         <CTAButton
-          to={AppRoute.MENTORSHIP}
+          to={AppRoute.MENTORSHIP_APPLY}
           className="w-auto"
           aria-label="Apply to Work With AmasPFT"
         >

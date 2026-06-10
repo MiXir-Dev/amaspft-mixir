@@ -8,77 +8,17 @@ import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { PageShell } from "@/components/layout/PageShell";
 import { COUNTRIES } from "@/constants/countries.const";
 import {
-  ALTERNATE_BRAND_NAME,
-  AppRoute,
   MENTORSHIP_SUCCESS_CONTACTS,
   type MentorshipContactChannel,
-  OG_IMAGE_PATH,
-  OG_X_IMAGE_PATH,
-  SITE_NAME,
-  SITE_URL,
   TRADER_NAME,
-  absoluteUrl,
 } from "@/constants/app.const";
+import { getMentorshipApplyHead } from "../-meta";
 import { cn } from "@/lib/utils";
 import { sendTelegramApplication } from "@/server/send-telegram-application";
 
-export const Route = createFileRoute("/pockets-full-trading-mentorship")({
-  head: () => ({
-    meta: [
-      { title: "Pockets Full Trading Mentorship | AmasPFT" },
-      {
-        name: "description",
-        content:
-          "Official mentorship page for AmasPFT. Apply to join the Pockets Full Trading mentorship and futures trading community.",
-      },
-      {
-        property: "og:title",
-        content: "Pockets Full Trading Mentorship | AmasPFT",
-      },
-      {
-        property: "og:description",
-        content:
-          "Official mentorship page for traders interested in the Pockets Full Trading community and AmasPFT mentorship experience.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: SITE_NAME },
-      { property: "og:url", content: absoluteUrl(AppRoute.MENTORSHIP) },
-      { property: "og:image", content: absoluteUrl(OG_IMAGE_PATH) },
-      { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "Pockets Full Trading Mentorship | AmasPFT",
-      },
-      {
-        name: "twitter:description",
-        content: "Official mentorship page for AmasPFT.",
-      },
-      { name: "twitter:image", content: absoluteUrl(OG_X_IMAGE_PATH) },
-      {
-        "script:ld+json": {
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Pockets Full Trading Mentorship",
-          url: absoluteUrl(AppRoute.MENTORSHIP),
-          description:
-            "Official mentorship page for AmasPFT. Apply to join the Pockets Full Trading mentorship and futures trading community.",
-          about: {
-            "@type": "Person",
-            name: SITE_NAME,
-            alternateName: ALTERNATE_BRAND_NAME,
-            url: SITE_URL,
-          },
-          isPartOf: {
-            "@type": "WebSite",
-            name: SITE_NAME,
-            url: SITE_URL,
-          },
-        },
-      },
-    ],
-    links: [{ rel: "canonical", href: absoluteUrl(AppRoute.MENTORSHIP) }],
-  }),
-  component: ApplyPage,
+export const Route = createFileRoute("/mentorship/apply/")({
+  head: () => getMentorshipApplyHead(),
+  component: MentorshipApply,
 });
 
 const EXPERIENCE_LEVELS = [
@@ -89,8 +29,8 @@ const EXPERIENCE_LEVELS = [
 
 type ExperienceLevel = (typeof EXPERIENCE_LEVELS)[number]["value"];
 
-const cleanHandle = (value: string) => {
-  return value
+const cleanHandle = (value: string) =>
+  value
     .trim()
     .replace(/^https?:\/\/(www\.)?(instagram\.com|x\.com|twitter\.com)\//i, "")
     .replace(/^@+/, "")
@@ -98,7 +38,6 @@ const cleanHandle = (value: string) => {
     .split("?")[0]
     .split("/")[0]
     .trim();
-};
 
 const schema = z
   .object({
@@ -133,7 +72,7 @@ const labelCls =
 const inputCls =
   "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-base sm:text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
 
-function ApplyPage() {
+export function MentorshipApply() {
   const [submitted, setSubmitted] = useState<{
     contact: MentorshipContactChannel;
   } | null>(null);
@@ -173,25 +112,65 @@ function ApplyPage() {
   const onSubmit = async (data: FormData) => {
     try {
       await sendTelegramApplication({ data });
-      const preferredContact: MentorshipContactChannel = cleanHandle(
-        data.instagram,
-      )
-        ? "Instagram"
-        : "X";
-      setSubmitted({ contact: preferredContact });
+      setSubmitted({
+        contact: cleanHandle(data.instagram) ? "Instagram" : "X",
+      });
     } catch (error) {
       console.error("Application submission failed:", error);
     }
   };
 
   if (submitted) {
+    const details = MENTORSHIP_SUCCESS_CONTACTS[submitted.contact];
+    const ContactIcon =
+      submitted.contact === "Instagram" ? FaInstagram : FaXTwitter;
+
     return (
       <PageShell>
         <section className="relative overflow-hidden px-4 pt-28 pb-8 sm:px-6 sm:pt-36 lg:px-8">
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-mint/[0.05] blur-[120px]" />
+          <div className="relative mx-auto flex max-w-sm flex-col items-center text-center">
+            <a
+              href={details.actionHref}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex flex-col items-center focus:outline-none"
+              aria-label={details.ariaLabel}
+            >
+              <img
+                src={details.imagePath}
+                alt={details.imageAlt}
+                className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
+              />
+              <div className="mt-4 flex items-center gap-1.5">
+                <span className="text-base font-medium tracking-tight text-foreground sm:text-lg">
+                  {details.handle}
+                </span>
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-mint text-background">
+                  <Check className="h-2.5 w-2.5 stroke-[3]" />
+                </span>
+              </div>
+            </a>
 
-          <div className="relative mx-auto max-w-sm">
-            <SuccessState contact={submitted.contact} />
+            <h2 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
+              DM {TRADER_NAME} on {details.label}.
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              He is waiting for your message now.
+            </p>
+            <a
+              href={details.actionHref}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-mint px-6 py-3.5 text-sm font-medium text-primary-foreground transition hover:bg-mint-hover"
+            >
+              <ContactIcon
+                className="h-4 w-4 shrink-0"
+                style={{ color: details.iconColor }}
+                aria-hidden="true"
+              />
+              {details.actionLabel}
+            </a>
           </div>
         </section>
       </PageShell>
@@ -200,16 +179,14 @@ function ApplyPage() {
 
   return (
     <PageShell>
-      <section className="relative pt-28 sm:pt-36 md:pt-44 pb-20 sm:pb-24">
-        <div className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-[500px] w-[700px] rounded-full bg-mint/[0.05] blur-[120px]" />
-
+      <section className="relative pt-28 pb-20 sm:pt-36 sm:pb-24 md:pt-44">
+        <div className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-mint/[0.05] blur-[120px]" />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12">
+          <div className="mb-10 text-center sm:mb-12">
             <span className="font-medium uppercase tracking-[0.22em] text-mint text-xs sm:text-sm">
               APPLICATION
             </span>
-
-            <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-balance">
+            <h1 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-5xl md:text-6xl">
               Apply To Work With AmasPFT
             </h1>
           </div>
@@ -226,7 +203,6 @@ function ApplyPage() {
                 className={inputCls}
                 autoComplete="name"
               />
-
               {errors.name && (
                 <p className="mt-1 text-xs text-destructive">
                   {errors.name.message}
@@ -234,7 +210,7 @@ function ApplyPage() {
               )}
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label className={labelCls}>Instagram handle</label>
                 <input
@@ -242,7 +218,6 @@ function ApplyPage() {
                   placeholder="@username"
                   className={inputCls}
                 />
-
                 {errors.instagram && (
                   <p className="mt-1 text-xs text-destructive">
                     {errors.instagram.message}
@@ -257,7 +232,6 @@ function ApplyPage() {
                   placeholder="@username"
                   className={inputCls}
                 />
-
                 {errors.xHandle && (
                   <p className="mt-1 text-xs text-destructive">
                     {errors.xHandle.message}
@@ -266,7 +240,7 @@ function ApplyPage() {
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label className={labelCls}>How old are you?</label>
                 <input
@@ -277,7 +251,6 @@ function ApplyPage() {
                   {...register("age")}
                   className={inputCls}
                 />
-
                 {errors.age && (
                   <p className="mt-1 text-xs text-destructive">
                     {errors.age.message}
@@ -297,7 +270,6 @@ function ApplyPage() {
                     />
                   )}
                 />
-
                 {errors.country && (
                   <p className="mt-1 text-xs text-destructive">
                     {errors.country.message}
@@ -318,7 +290,6 @@ function ApplyPage() {
                   />
                 )}
               />
-
               {errors.experience && (
                 <p className="mt-1 text-xs text-destructive">
                   {errors.experience.message}
@@ -331,12 +302,11 @@ function ApplyPage() {
                 type="submit"
                 disabled={isSubmitting}
                 aria-label="Apply to Work With AmasPFT"
-                className="w-full inline-flex items-center justify-center rounded-full bg-mint px-6 py-3.5 text-sm font-medium text-primary-foreground hover:bg-mint-hover transition disabled:opacity-60"
+                className="inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-3.5 text-sm font-medium text-primary-foreground transition hover:bg-mint-hover disabled:opacity-60"
               >
                 {isSubmitting ? "Submitting…" : "Submit Application"}
               </button>
-
-              <p className="mt-4 text-[11px] text-muted-foreground/80 text-center leading-relaxed">
+              <p className="mt-4 text-center text-[11px] leading-relaxed text-muted-foreground/80">
                 By submitting, you understand that trading involves risk and
                 results are not guaranteed.
               </p>
@@ -382,7 +352,6 @@ function ExperienceSelector({
               onChange={() => onChange(opt.value)}
               className="sr-only"
             />
-
             <span
               className={cn(
                 "flex h-5 w-5 items-center justify-center rounded-full border transition-all duration-200",
@@ -400,7 +369,6 @@ function ExperienceSelector({
                 )}
               />
             </span>
-
             <span>{opt.label}</span>
           </label>
         );
@@ -418,7 +386,6 @@ function CountrySelect({
 }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-
   const filtered = query
     ? COUNTRIES.filter((c) => c.toLowerCase().includes(query.toLowerCase()))
     : COUNTRIES;
@@ -435,21 +402,20 @@ function CountrySelect({
         )}
       >
         <span className="truncate">{value || "Select country"}</span>
-        <ChevronDown className="h-4 w-4 opacity-60 shrink-0 ml-2" />
+        <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-60" />
       </button>
 
       {open && (
         <>
           <div className="fixed inset-0 z-20" onClick={() => setOpen(false)} />
-
           <div className="absolute z-30 mt-2 w-full overflow-hidden rounded-xl border border-white/10 bg-surface-2 shadow-2xl">
-            <div className="p-2 border-b border-white/10">
+            <div className="border-b border-white/10 p-2">
               <input
                 autoFocus
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search…"
-                className="w-full rounded-lg bg-surface-1 border border-white/10 px-3 py-2 text-base sm:text-sm focus:outline-none focus:border-mint/50"
+                className="w-full rounded-lg border border-white/10 bg-surface-1 px-3 py-2 text-base focus:border-mint/50 focus:outline-none sm:text-sm"
               />
             </div>
 
@@ -460,24 +426,23 @@ function CountrySelect({
                 </li>
               )}
 
-              {filtered.map((c) => {
-                const selected = c === value;
-
+              {filtered.map((country) => {
+                const selected = country === value;
                 return (
-                  <li key={c}>
+                  <li key={country}>
                     <button
                       type="button"
                       onClick={() => {
-                        onChange(c);
+                        onChange(country);
                         setOpen(false);
                         setQuery("");
                       }}
                       className={cn(
-                        "flex w-full items-center justify-between px-4 py-2.5 text-sm hover:bg-white/[0.04] transition",
+                        "flex w-full items-center justify-between px-4 py-2.5 text-sm transition hover:bg-white/[0.04]",
                         selected && "text-mint",
                       )}
                     >
-                      <span>{c}</span>
+                      <span>{country}</span>
                       {selected && <Check className="h-4 w-4" />}
                     </button>
                   </li>
@@ -487,65 +452,6 @@ function CountrySelect({
           </div>
         </>
       )}
-    </div>
-  );
-}
-
-function SuccessState({ contact }: { contact: MentorshipContactChannel }) {
-  const details = MENTORSHIP_SUCCESS_CONTACTS[contact];
-  const ContactIcon = contact === "Instagram" ? FaInstagram : FaXTwitter;
-
-  return (
-    <div className="mx-auto flex max-w-sm flex-col items-center text-center">
-      <a
-        href={details.actionHref}
-        target="_blank"
-        rel="noreferrer"
-        className="group flex flex-col items-center focus:outline-none"
-        aria-label={details.ariaLabel}
-      >
-        <div className="relative">
-          <img
-            src={details.imagePath}
-            alt={details.imageAlt}
-            className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
-          />
-        </div>
-
-        <div className="mt-4 flex items-center gap-1.5">
-          <span className="text-base font-medium tracking-tight text-foreground sm:text-lg">
-            {details.handle}
-          </span>
-
-          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-mint text-background">
-            <Check className="h-2.5 w-2.5 stroke-[3]" />
-          </span>
-        </div>
-      </a>
-
-      <h2 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
-        DM {TRADER_NAME} on {details.label}.
-      </h2>
-
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-        He is waiting for your message now.
-      </p>
-
-      <div className="mt-7 flex w-full flex-col gap-3">
-        <a
-          href={details.actionHref}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-3.5 gap-2 text-sm font-medium text-primary-foreground transition hover:bg-mint-hover"
-        >
-          <ContactIcon
-            className="h-4 w-4 shrink-0"
-            style={{ color: details.iconColor }}
-            aria-hidden="true"
-          />
-          {details.actionLabel}
-        </a>
-      </div>
     </div>
   );
 }

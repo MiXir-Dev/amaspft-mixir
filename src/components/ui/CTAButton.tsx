@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { AppRoute } from "@/constants/app.const";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 
@@ -6,7 +7,10 @@ type Variant = "primary" | "ghost";
 
 type Props = {
   children: ReactNode;
-  to?: string;
+  to?: (typeof AppRoute)[keyof Pick<
+    typeof AppRoute,
+    "HOME" | "MENTORSHIP_APPLY"
+  >];
   href?: string;
   variant?: Variant;
   className?: string;
@@ -36,7 +40,12 @@ export function CTAButton({
   const cls = cn(base, styles[variant], className);
   if (to) {
     return (
-      <Link to={to} className={cls} onClick={onClick} aria-label={ariaLabel}>
+      <Link
+        to={to}
+        className={cls}
+        onClick={onClick}
+        aria-label={ariaLabel}
+      >
         {children}
       </Link>
     );

@@ -29,7 +29,7 @@ export function FinalCtaSection() {
 
           <div className="mt-8 flex justify-center">
             <CTAButton
-              to={AppRoute.MENTORSHIP}
+              to={AppRoute.MENTORSHIP_APPLY}
               className="w-full sm:w-auto"
               aria-label="Apply to Work With AmasPFT"
             >
