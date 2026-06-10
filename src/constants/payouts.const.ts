@@ -11,6 +11,8 @@ import payout008 from "@/assets/payouts/08_prop.webp";
 import payout009 from "@/assets/payouts/09_prop.webp";
 import payout010 from "@/assets/payouts/10_live.webp";
 import payout011 from "@/assets/payouts/11_prop.webp";
+import payout012 from "@/assets/payouts/12_live.webp";
+import payout013 from "@/assets/payouts/13_live.webp";
 
 export const PAYOUTS: Payout[] = [
     {
@@ -88,5 +90,19 @@ export const PAYOUTS: Payout[] = [
     amount: "$12,000",
     imageSrc: payout011,
     alt: "AmasPFT Prop Firm screenshot showing a $12,000 withdrawal",
+  },
+  {
+    id: "payout-012",
+    amount: "$1,350",
+    imageSrc: payout012,
+    alt: "AmasPFT Live screenshot showing a $1,350 withdrawal",
+    live: true,
+  },
+  {
+    id: "payout-013",
+    amount: "$1,125",
+    imageSrc: payout013,
+    alt: "AmasPFT Live screenshot showing a $1,125 withdrawal",
+    live: true,
   },
 ];
