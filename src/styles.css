@@ -87,6 +87,9 @@
 
   html {
     color-scheme: dark;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   @media (min-width: 768px) {
@@ -102,6 +105,23 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "ss01", "cv11";
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  @supports not (overflow: clip) {
+    html,
+    body,
+    #root {
+      overflow-x: hidden;
+    }
   }
 
   ::selection {

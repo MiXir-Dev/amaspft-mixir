@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { AppRoute } from "@/constants/app.const";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "@/constants/navigation.const";
@@ -7,6 +8,10 @@ import { BrandLogo } from "@/components/BrandLogo";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+  const isMentorshipPage = pathname === AppRoute.MENTORSHIP;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -24,7 +29,7 @@ export function Header() {
           : "bg-transparent py-3 sm:py-4",
       )}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <BrandLogo />
 
         <nav className="hidden md:flex items-center gap-8">
@@ -39,14 +44,16 @@ export function Header() {
           ))}
         </nav>
 
-        <CTAButton
-          to={AppRoute.MENTORSHIP}
-          variant="primary"
-          className="px-4 py-2 text-xs sm:text-sm"
-          aria-label="Apply to Work With AmasPFT"
-        >
-          Apply
-        </CTAButton>
+        {!isMentorshipPage && (
+          <CTAButton
+            to={AppRoute.MENTORSHIP}
+            variant="primary"
+            className="shrink-0 px-4 py-2 text-xs sm:text-sm"
+            aria-label="Apply to Work With AmasPFT"
+          >
+            Apply
+          </CTAButton>
+        )}
       </div>
     </header>
   );
