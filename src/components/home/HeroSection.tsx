@@ -21,8 +21,8 @@ export function HeroSection() {
           </h1>
 
           <p className="mt-5 max-w-xl text-balance text-sm text-muted-foreground sm:mt-6 sm:text-base md:text-lg">
-            Official website of {TRADER_NAME}, sharing futures trading payouts,
-            monthly results, community testimonials, and application access.
+            Follow the verified results of {TRADER_NAME} and apply for private
+            1-on-1 futures trading mentorship.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export function HeroSection() {
         <CTAButton
           to={AppRoute.MENTORSHIP_APPLY}
           className="w-auto"
-          aria-label="Apply to Work With AmasPFT"
+          aria-label="Apply for 1-on-1 Mentorship"
         >
           {PRIMARY_CTA}
         </CTAButton>
