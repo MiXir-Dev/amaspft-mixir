@@ -23,7 +23,7 @@ export const AppRoute = {
 export const BRAND_DESCRIPTION =
   "Official website of AmasPFT, also known as Pockets Full Trading, a futures trader sharing payout proof, monthly results, community testimonials, and application access.";
 export const VIDEO_URL = "https://youtu.be/6jM0S5_Um9M";
-export const PRIMARY_CTA = "Apply to Work With AmasPFT";
+export const PRIMARY_CTA = "Apply for 1-on-1 Mentorship";
 export const LIFETIME_PAYOUTS = "$200,000+";
 export const WHOP_RATING = "4.83";
 export const WHOP_REVIEW_COUNT = 127;
