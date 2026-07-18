@@ -6,7 +6,6 @@ import { AppRoute, PRIMARY_CTA } from "@/constants/app.const";
 const MENTORSHIP_BENEFITS = [
   "5 private live trading sessions every week",
   "Daily charting classes",
-  "Daily trade recaps",
   "Sunday backtesting sessions",
   "100+ hours of trading education",
   "24/7 support",

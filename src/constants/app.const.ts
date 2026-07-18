@@ -36,6 +36,8 @@ export const YOUTUBE_URL = "https://youtube.com/@amaspft";
 export const TIKTOK_URL = "https://www.tiktok.com/@amas_pft";
 export const DISCORD_URL = "https://discord.com/invite/jVWuy5CvDX";
 export const WHOP_URL = "https://whop.com/vip-ff-e142/";
+export const MENTORSHIP_CHECKOUT_URL =
+  "https://whop.com/checkout/plan_XEXtLXVAkCYz7/";
 export const INSTAGRAM_DM_URL = "https://ig.me/m/amas.pft";
 export const INSTAGRAM_PROFILE_IMAGE_PATH = "/amaspft-profile-ig.webp";
 export const X_PROFILE_IMAGE_PATH = "/amaspft-profile-x.webp";
