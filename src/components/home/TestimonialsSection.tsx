@@ -182,7 +182,11 @@ function RatingCard() {
 
 export function TestimonialsSection() {
   return (
-    <Section id="reviews" eyebrow="OUR COMMUNITY" containerClassName="max-w-none">
+    <Section
+      id="reviews"
+      eyebrow="OUR COMMUNITY"
+      containerClassName="max-w-none"
+    >
       <RatingCard />
 
       <InteractiveMediaRail
@@ -197,6 +201,8 @@ export function TestimonialsSection() {
               src={t.imageSrc}
               alt={t.alt}
               loading="lazy"
+              decoding="async"
+              fetchPriority="low"
               className="absolute inset-0 h-full w-full object-cover"
             />
 

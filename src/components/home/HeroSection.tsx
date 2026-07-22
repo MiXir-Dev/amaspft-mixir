@@ -1,6 +1,7 @@
 import { CTAButton } from "@/components/ui/CTAButton";
 import { VideoFeature } from "./VideoFeature";
 import {
+  ALTERNATE_BRAND_NAME,
   AppRoute,
   PRIMARY_CTA,
   SITE_NAME,
@@ -17,12 +18,16 @@ export function HeroSection() {
         <div className="flex max-w-4xl flex-col items-center text-center">
           <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
             <span className="block text-mint">{SITE_NAME}</span>
+            <span className="mt-2 block text-xl text-foreground/85 sm:text-3xl md:text-4xl">
+              {ALTERNATE_BRAND_NAME}
+            </span>
             <span className="block text-foreground">Futures Trader</span>
           </h1>
 
           <p className="mt-5 max-w-xl text-balance text-sm text-muted-foreground sm:mt-6 sm:text-base md:text-lg">
-            Follow the verified results of {TRADER_NAME} and apply for private
-            1-on-1 futures trading mentorship.
+            {TRADER_NAME} is the futures trader behind {ALTERNATE_BRAND_NAME}.
+            Explore verified results and apply for private 1-on-1 futures
+            trading mentorship.
           </p>
         </div>
 

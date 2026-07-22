@@ -1,7 +1,11 @@
 import { Check } from "lucide-react";
 
 import { CTAButton } from "@/components/ui/CTAButton";
-import { AppRoute, PRIMARY_CTA } from "@/constants/app.const";
+import {
+  ALTERNATE_BRAND_NAME,
+  AppRoute,
+  PRIMARY_CTA,
+} from "@/constants/app.const";
 
 const MENTORSHIP_BENEFITS = [
   "5 private live trading sessions every week",
@@ -27,14 +31,14 @@ export function MentorshipOfferSection() {
 
           <div className="relative">
             <span className="text-xs font-medium uppercase tracking-[0.22em] text-mint sm:text-sm">
-              Private 1-on-1 Mentorship
+              {ALTERNATE_BRAND_NAME} Mentorship
             </span>
 
             <h2
               id="mentorship-heading"
               className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
             >
-              Trade With Amas. Every Week.
+              Private 1-on-1 Futures Trading Mentorship
             </h2>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">

@@ -33,7 +33,12 @@ export function VideoFeature() {
           >
             <img
               src={thumbnailImg}
-              alt="AmasPFT video thumbnail introducing the futures trading community and payout proof"
+              alt="AmasPFT explaining a one-candle futures trading strategy"
+              width={1280}
+              height={720}
+              decoding="async"
+              loading="eager"
+              fetchPriority="high"
               className="absolute inset-0 h-full w-full object-cover opacity-85 transition duration-500 group-hover:scale-[1.025] group-hover:opacity-100"
             />
 

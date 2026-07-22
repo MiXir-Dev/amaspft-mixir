@@ -33,6 +33,8 @@ export function LifetimePayoutCard() {
                   src={lifetimeImg}
                   alt={alt}
                   loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                   className="absolute inset-0 h-full w-full object-contain"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

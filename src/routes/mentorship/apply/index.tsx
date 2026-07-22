@@ -4,9 +4,15 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, ChevronDown } from "lucide-react";
+import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { PageShell } from "@/components/layout/PageShell";
 import { COUNTRIES } from "@/constants/countries.const";
-import { MENTORSHIP_CHECKOUT_URL, TRADER_NAME } from "@/constants/app.const";
+import {
+  MENTORSHIP_CHECKOUT_URL,
+  MENTORSHIP_SUCCESS_CONTACTS,
+  type MentorshipContactChannel,
+  TRADER_NAME,
+} from "@/constants/app.const";
 import { getMentorshipApplyHead } from "../-meta";
 import { cn } from "@/lib/utils";
 import { sendTelegramApplication } from "@/server/send-telegram-application";
@@ -68,7 +74,9 @@ const inputCls =
   "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-base sm:text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
 
 export function MentorshipApply() {
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState<{
+    contact: MentorshipContactChannel;
+  } | null>(null);
 
   const {
     register,
@@ -105,50 +113,94 @@ export function MentorshipApply() {
   const onSubmit = async (data: FormData) => {
     try {
       await sendTelegramApplication({ data });
-      setSubmitted(true);
+      setSubmitted({
+        contact: cleanHandle(data.instagram) ? "Instagram" : "X",
+      });
     } catch (error) {
       console.error("Application submission failed:", error);
     }
   };
 
   if (submitted) {
+    const details = MENTORSHIP_SUCCESS_CONTACTS[submitted.contact];
+    const ContactIcon =
+      submitted.contact === "Instagram" ? FaInstagram : FaXTwitter;
+
     return (
       <PageShell>
-        <section className="relative overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pt-36 lg:px-8">
-          <div
-            className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-mint/[0.06] blur-[120px]"
-            aria-hidden="true"
-          />
-
-          <div className="relative mx-auto flex max-w-md flex-col items-center text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border border-mint/25 bg-mint/10 text-mint">
-              <Check className="h-6 w-6" strokeWidth={2.5} aria-hidden="true" />
-            </div>
-
-            <span className="mt-6 text-xs font-medium uppercase tracking-[0.22em] text-mint">
-              Application Submitted
-            </span>
-
-            <h1 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-              You’re One Step Away.
-            </h1>
-
-            <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground sm:text-base">
-              Complete your enrollment now to start working.
-            </p>
-
+        <section className="relative overflow-hidden px-4 pb-12 pt-28 sm:px-6 sm:pt-36 lg:px-8">
+          <div className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-mint/[0.05] blur-[120px]" />
+          <div className="relative mx-auto flex max-w-sm flex-col items-center text-center">
             <a
-              href={MENTORSHIP_CHECKOUT_URL}
+              href={details.actionHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-3.5 text-sm font-medium text-primary-foreground transition hover:bg-mint-hover"
+              className="group flex flex-col items-center focus:outline-none"
+              aria-label={details.ariaLabel}
             >
-              Complete My Enrollment
+              <img
+                src={details.imagePath}
+                alt={details.imageAlt}
+                width={112}
+                height={112}
+                decoding="async"
+                className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
+              />
+              <div className="mt-4 flex items-center gap-1.5">
+                <span className="text-base font-medium tracking-tight text-foreground sm:text-lg">
+                  {details.handle}
+                </span>
+                <span className="flex h-4 w-4 items-center justify-center rounded-full bg-mint text-background">
+                  <Check className="h-2.5 w-2.5 stroke-[3]" />
+                </span>
+              </div>
             </a>
 
-            <p className="mt-3 text-xs text-muted-foreground">
-              Secure checkout through Whop
+            <h1 className="mt-7 text-2xl font-semibold tracking-tight sm:text-3xl">
+              DM me <span className="text-mint">&quot;MENTORSHIP&quot;</span> on{" "}
+              {details.label}.
+            </h1>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              {details.message}
             </p>
+            <a
+              href={details.actionHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-mint px-6 py-3.5 text-sm font-medium text-primary-foreground transition hover:bg-mint-hover"
+            >
+              <ContactIcon
+                className="h-4 w-4 shrink-0"
+                style={{ color: details.iconColor }}
+                aria-hidden="true"
+              />
+              {details.actionLabel}
+            </a>
+
+            <div className="relative mt-8 w-full overflow-hidden rounded-2xl border border-mint/30 bg-mint/[0.07] p-5 shadow-[0_18px_60px_-35px_rgba(193,225,194,0.8)]">
+              <div
+                className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-mint/15 blur-3xl"
+                aria-hidden="true"
+              />
+              <span className="relative inline-flex rounded-full border border-mint/30 bg-background/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-mint">
+                Only 2 spots available
+              </span>
+              <h2 className="relative mt-3 text-xl font-semibold tracking-tight text-foreground">
+                Secure your place directly
+              </h2>
+              <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
+                Skip the wait and complete your enrollment securely through
+                Whop.
+              </p>
+              <a
+                href={MENTORSHIP_CHECKOUT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative mt-5 inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-18px_rgba(193,225,194,0.9)] transition hover:bg-mint-hover"
+              >
+                Secure My Place on Whop
+              </a>
+            </div>
           </div>
         </section>
       </PageShell>

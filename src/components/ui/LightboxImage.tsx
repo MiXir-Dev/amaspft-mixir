@@ -1,6 +1,7 @@
-import { useState, type ReactNode } from "react";
-import Lightbox from "yet-another-react-lightbox";
+import { lazy, Suspense, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+
+const Lightbox = lazy(() => import("yet-another-react-lightbox"));
 
 type LightboxImageProps = {
   src: string;
@@ -31,12 +32,16 @@ export function LightboxImage({
         {children}
       </button>
 
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        slides={[{ src, alt }]}
-        controller={{ closeOnBackdropClick: true }}
-      />
+      {open && (
+        <Suspense fallback={null}>
+          <Lightbox
+            open
+            close={() => setOpen(false)}
+            slides={[{ src, alt }]}
+            controller={{ closeOnBackdropClick: true }}
+          />
+        </Suspense>
+      )}
     </>
   );
 }

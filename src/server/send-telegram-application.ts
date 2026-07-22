@@ -85,7 +85,6 @@ export const sendTelegramApplication = createServerFn({ method: "POST" })
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
-    console.log("Telegram application server function called");
 
     if (!botToken) {
       console.error("Missing TELEGRAM_BOT_TOKEN");
@@ -122,7 +121,6 @@ export const sendTelegramApplication = createServerFn({ method: "POST" })
       throw new Error(`Telegram sendMessage failed: ${responseText}`);
     }
 
-    console.log("Telegram sendMessage succeeded:", responseText);
 
     return { ok: true };
   });

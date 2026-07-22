@@ -1,67 +1,61 @@
 import {
+  AMASPFT_ENTITY_ID,
   ALTERNATE_BRAND_NAME,
   AppRoute,
   BRAND_DESCRIPTION,
   BRAND_IMAGE_PATH,
   OG_IMAGE_PATH,
   OG_X_IMAGE_PATH,
-  SAME_AS_LINKS,
+  POCKETS_FULL_TRADING_ENTITY_ID,
   SITE_NAME,
-  SITE_URL,
+  WEBSITE_ENTITY_ID,
   absoluteUrl,
 } from "@/constants/app.const";
 
 export function getMentorshipHomeHead(canonicalPath = AppRoute.HOME) {
   return {
     meta: [
-      { title: `${SITE_NAME} | Official PFT Website` },
+      { title: `${SITE_NAME} | ${ALTERNATE_BRAND_NAME} Official Website` },
       {
         name: "description",
         content: BRAND_DESCRIPTION,
       },
-      { property: "og:title", content: `${SITE_NAME} | Official Website` },
+      {
+        property: "og:title",
+        content: `${SITE_NAME} | ${ALTERNATE_BRAND_NAME}`,
+      },
       {
         property: "og:description",
-        content:
-          "Official AmasPFT website featuring futures trading payouts, monthly results, community proof, and the application page.",
+        content: BRAND_DESCRIPTION,
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:url", content: absoluteUrl(canonicalPath) },
       { property: "og:image", content: absoluteUrl(OG_IMAGE_PATH) },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: `${SITE_NAME} | Official Website` },
+      {
+        name: "twitter:title",
+        content: `${SITE_NAME} | ${ALTERNATE_BRAND_NAME}`,
+      },
       {
         name: "twitter:description",
-        content:
-          "Official website of AmasPFT, also known as Pockets Full Trading.",
+        content: BRAND_DESCRIPTION,
       },
       { name: "twitter:image", content: absoluteUrl(OG_X_IMAGE_PATH) },
       {
         "script:ld+json": {
           "@context": "https://schema.org",
-          "@type": "Person",
-          name: SITE_NAME,
-          alternateName: ALTERNATE_BRAND_NAME,
-          url: SITE_URL,
-          description:
-            "AmasPFT, also known as Pockets Full Trading, is a futures trader sharing payout proof, monthly results, community testimonials, and application access through his official website.",
-          image: absoluteUrl(BRAND_IMAGE_PATH),
-          sameAs: SAME_AS_LINKS,
-        },
-      },
-      {
-        "script:ld+json": {
-          "@context": "https://schema.org",
           "@type": "WebPage",
-          name: `${SITE_NAME} | Official Website`,
+          "@id": `${absoluteUrl(canonicalPath)}#webpage`,
+          name: `${SITE_NAME} | ${ALTERNATE_BRAND_NAME}`,
           url: absoluteUrl(canonicalPath),
           description: BRAND_DESCRIPTION,
-          isPartOf: {
-            "@type": "WebSite",
-            name: SITE_NAME,
-            url: SITE_URL,
-          },
+          isPartOf: { "@id": WEBSITE_ENTITY_ID },
+          about: [
+            { "@id": AMASPFT_ENTITY_ID },
+            { "@id": POCKETS_FULL_TRADING_ENTITY_ID },
+          ],
+          primaryImageOfPage: absoluteUrl(BRAND_IMAGE_PATH),
         },
       },
     ],
@@ -112,16 +106,9 @@ export function getMentorshipApplyHead(
           description:
             "Official mentorship page for AmasPFT. Apply to join the Pockets Full Trading mentorship and futures trading community.",
           about: {
-            "@type": "Person",
-            name: SITE_NAME,
-            alternateName: ALTERNATE_BRAND_NAME,
-            url: SITE_URL,
+            "@id": POCKETS_FULL_TRADING_ENTITY_ID,
           },
-          isPartOf: {
-            "@type": "WebSite",
-            name: SITE_NAME,
-            url: SITE_URL,
-          },
+          isPartOf: { "@id": WEBSITE_ENTITY_ID },
         },
       },
     ],

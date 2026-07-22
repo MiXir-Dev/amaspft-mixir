@@ -14,7 +14,8 @@ export function FinalCtaSection() {
           </span>
 
           <h2 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-            Join the <span className="text-mint">1%</span>.          </h2>
+            Join the <span className="text-mint">1%</span>.{" "}
+          </h2>
 
           <div className="relative mt-10 w-full">
             <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-mint/[0.06] blur-2xl" />
@@ -24,6 +25,8 @@ export function FinalCtaSection() {
                 src={lifetimeImg}
                 alt={`AmasPFT lifetime payout proof screenshot showing more than ${LIFETIME_PAYOUTS} in withdrawals`}
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="absolute inset-0 h-full w-full object-contain"
               />
             </div>

@@ -21,13 +21,13 @@ export const AppRoute = {
   YOUTUBE: "/ytb",
 } as const;
 export const BRAND_DESCRIPTION =
-  "Official website of AmasPFT, also known as Pockets Full Trading, a futures trader sharing payout proof, monthly results, community testimonials, and application access.";
-export const VIDEO_URL = "https://youtu.be/6jM0S5_Um9M";
+  "AmasPFT is the official home of Pockets Full Trading, featuring verified futures trading payouts, monthly results, community reviews, and mentorship.";
+export const VIDEO_URL = "https://youtu.be/KWR9Bc0bs0Y?si=jS8B6XE9wKiJCmLK";
 export const PRIMARY_CTA = "Apply for 1-on-1 Mentorship";
 export const LIFETIME_PAYOUTS = "$200,000+";
 export const WHOP_RATING = "4.83";
 export const WHOP_REVIEW_COUNT = 127;
-export const BRAND_IMAGE_PATH = "/amaspft-profile.webp";
+export const BRAND_IMAGE_PATH = "/amaspft-profile-ig.webp";
 export const OG_IMAGE_PATH = "/og.webp";
 export const OG_X_IMAGE_PATH = "/og_x.webp";
 export const X_URL = "https://x.com/amaspft";
@@ -41,6 +41,9 @@ export const MENTORSHIP_CHECKOUT_URL =
 export const INSTAGRAM_DM_URL = "https://ig.me/m/amas.pft";
 export const INSTAGRAM_PROFILE_IMAGE_PATH = "/amaspft-profile-ig.webp";
 export const X_PROFILE_IMAGE_PATH = "/amaspft-profile-x.webp";
+export const AMASPFT_ENTITY_ID = `${SITE_URL}/#amaspft`;
+export const POCKETS_FULL_TRADING_ENTITY_ID = `${SITE_URL}/#pockets-full-trading`;
+export const WEBSITE_ENTITY_ID = `${SITE_URL}/#website`;
 
 export const SOCIAL_LINKS: SocialLink[] = [
   { label: "X", href: X_URL, icon: FaXTwitter },

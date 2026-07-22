@@ -21,7 +21,10 @@ export function Section({
   align = "left",
 }: SectionProps) {
   return (
-    <section id={id} className={cn("relative py-16 sm:py-24", className)}>
+    <section
+      id={id}
+      className={cn("defer-render relative py-16 sm:py-24", className)}
+    >
       <div
         className={cn(
           "mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8",

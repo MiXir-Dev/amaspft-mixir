@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import Lightbox from "yet-another-react-lightbox";
 import { cn } from "@/lib/utils";
+
+const Lightbox = lazy(() => import("yet-another-react-lightbox"));
 
 type InteractiveMediaRailProps<T> = {
   items: T[];
@@ -83,13 +84,17 @@ export function InteractiveMediaRail<T>({
         </div>
       </div>
 
-      <Lightbox
-        open={lightboxIndex >= 0}
-        close={() => setLightboxIndex(-1)}
-        index={lightboxIndex}
-        slides={slides}
-        controller={{ closeOnBackdropClick: true }}
-      />
+      {lightboxIndex >= 0 && (
+        <Suspense fallback={null}>
+          <Lightbox
+            open
+            close={() => setLightboxIndex(-1)}
+            index={lightboxIndex}
+            slides={slides}
+            controller={{ closeOnBackdropClick: true }}
+          />
+        </Suspense>
+      )}
     </>
   );
 }

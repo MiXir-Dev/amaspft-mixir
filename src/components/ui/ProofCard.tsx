@@ -33,6 +33,8 @@ export function ProofCard({
         src={imageSrc}
         alt={alt}
         loading="lazy"
+        decoding="async"
+        fetchPriority="low"
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/40" />

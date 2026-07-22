@@ -135,12 +135,18 @@
 }
 
 @utility mint-glow {
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--mint) 30%, transparent),
-              0 10px 40px -10px color-mix(in oklab, var(--mint) 25%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--mint) 30%, transparent),
+    0 10px 40px -10px color-mix(in oklab, var(--mint) 25%, transparent);
 }
 
 @utility hairline {
   border: 1px solid color-mix(in oklab, white 8%, transparent);
+}
+
+@utility defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }
 
 @utility surface-card {
@@ -149,8 +155,12 @@
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @utility animate-marquee {
@@ -162,5 +172,7 @@
     scroll-behavior: auto;
   }
 
-  .animate-marquee { animation: none !important; }
+  .animate-marquee {
+    animation: none !important;
+  }
 }
