@@ -163,6 +163,33 @@
   }
 }
 
+@keyframes cta-shine {
+  0%,
+  25% {
+    transform: translateX(0) skewX(-20deg);
+  }
+  65%,
+  100% {
+    transform: translateX(520%) skewX(-20deg);
+  }
+}
+
+@utility cta-shine {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -42%;
+  width: 32%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 72%),
+    transparent
+  );
+  filter: blur(1px);
+  animation: cta-shine 2.8s ease-in-out infinite;
+}
+
 @utility animate-marquee {
   animation: marquee var(--marquee-duration, 40s) linear infinite;
 }
@@ -174,5 +201,10 @@
 
   .animate-marquee {
     animation: none !important;
+  }
+
+  .cta-shine {
+    animation: none !important;
+    display: none;
   }
 }

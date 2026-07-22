@@ -73,7 +73,7 @@ const labelCls =
 const inputCls =
   "w-full rounded-xl bg-surface-1 border border-white/10 px-4 py-3 text-base sm:text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-mint/60 focus:ring-2 focus:ring-mint/20 transition";
 
-export function MentorshipApply() {
+function MentorshipApply() {
   const [submitted, setSubmitted] = useState<{
     contact: MentorshipContactChannel;
   } | null>(null);
@@ -128,7 +128,7 @@ export function MentorshipApply() {
 
     return (
       <PageShell>
-        <section className="relative overflow-hidden px-4 pb-12 pt-28 sm:px-6 sm:pt-36 lg:px-8">
+        <section className="relative overflow-hidden px-4 pb-12 pt-20 sm:px-6 sm:pt-24 lg:px-8">
           <div className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-mint/[0.05] blur-[120px]" />
           <div className="relative mx-auto flex max-w-sm flex-col items-center text-center">
             <a
@@ -177,28 +177,35 @@ export function MentorshipApply() {
               {details.actionLabel}
             </a>
 
-            <div className="relative mt-8 w-full overflow-hidden rounded-2xl border border-mint/30 bg-mint/[0.07] p-5 shadow-[0_18px_60px_-35px_rgba(193,225,194,0.8)]">
+            <div className="relative mt-8 w-full overflow-hidden rounded-2xl border border-mint/25 bg-mint/[0.05] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_20px_60px_-40px_rgba(193,225,194,0.7)]">
               <div
-                className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-mint/15 blur-3xl"
+                className="pointer-events-none absolute -right-14 -top-16 h-44 w-44 rounded-full bg-mint/15 blur-[55px]"
                 aria-hidden="true"
               />
-              <span className="relative inline-flex rounded-full border border-mint/30 bg-background/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-mint">
-                Only 2 spots available
+              <span className="relative inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-mint">
+                <span className="relative flex h-2 w-2" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-40 motion-reduce:animate-none" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-mint" />
+                </span>
+                Only 2 spots left
               </span>
               <h2 className="relative mt-3 text-xl font-semibold tracking-tight text-foreground">
                 Secure your place directly
               </h2>
-              <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
-                Skip the wait and complete your enrollment securely through
-                Whop.
+              <p className="relative mt-2 text-sm text-muted-foreground">
+                Enroll instantly through Whop.
               </p>
               <a
                 href={MENTORSHIP_CHECKOUT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative mt-5 inline-flex w-full items-center justify-center rounded-full bg-mint px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-18px_rgba(193,225,194,0.9)] transition hover:bg-mint-hover"
+                aria-label="Secure one of the two remaining mentorship spots through Whop"
+                className="group relative mt-4 inline-flex w-full overflow-hidden rounded-full bg-mint px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-[0_10px_30px_-16px_rgba(193,225,194,0.95)] transition duration-300 hover:-translate-y-0.5 hover:bg-mint-hover hover:shadow-[0_14px_38px_-16px_rgba(193,225,194,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
-                Secure My Place on Whop
+                <span className="cta-shine" aria-hidden="true" />
+                <span className="relative z-10 mx-auto">
+                  Secure Your Spot Now
+                </span>
               </a>
             </div>
           </div>
@@ -276,7 +283,7 @@ export function MentorshipApply() {
                 <input
                   type="number"
                   inputMode="numeric"
-                  min={13}
+                  min={18}
                   max={99}
                   {...register("age")}
                   className={inputCls}
